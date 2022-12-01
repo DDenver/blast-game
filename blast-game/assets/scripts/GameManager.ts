@@ -46,8 +46,8 @@ export default class GameManager extends cc.Component {
     }
 
     private loadScene(): void {
-        cc.director.loadScene('Game', () => {
-            console.log('Game Loaded');
+        cc.director.loadScene('Result', () => {
+            console.log('Result Loaded');
             this.windowResized();
         });
     }
