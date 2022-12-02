@@ -34,19 +34,25 @@ export default class FieldUtils {
         this.conputeFieldParams();
     }
 
-    public getPositionOnMap(touchPos: cc.Vec2): cc.Vec2 {
+    public getTouchOnMap(touchPos: cc.Vec2): cc.Vec2 {
         const localNodePos = this.field.node.convertToNodeSpaceAR(touchPos);
-        const deltaX = Math.abs(localNodePos.x - this.startPoint.x);
-        const deltaY = Math.abs(localNodePos.y - this.startPoint.y);
+        console.log(this.getPositionOnMap(localNodePos).toString(), localNodePos.toString(), 'mapPos');
+
+        return this.getPositionOnMap(localNodePos);
+    }
+
+    public getPositionOnMap(localNodePos: cc.Vec2): cc.Vec2 {
+        const deltaX = localNodePos.x - this.startPoint.x;
+        const deltaY = localNodePos.y - this.startPoint.y;
 
         const posOnMap = new cc.Vec2(
             Math.round(deltaX / (this.tileScaledSize.width + this.offset.x)),
-            Math.round(deltaY / (this.tileScaledSize.height + this.offset.y))
+            -Math.round(deltaY / (this.tileScaledSize.height + this.offset.y))
         )
 
         const nearPoin = this.getMapToWorldPos(posOnMap);
-        const distanceX = Math.abs(localNodePos.x - nearPoin.x);
-        const distanceY = Math.abs(localNodePos.y - nearPoin.y);
+        const distanceX = localNodePos.x - nearPoin.x;
+        const distanceY = localNodePos.y - nearPoin.y;
 
         if (
             (distanceX <= this.tileScaledSize.width / 2)

@@ -32,9 +32,9 @@ export default class FieldInput {
         if (!this.isEnable || data.touchSource !== InputSources.Field) return;
         const touchPos = data.eventTouch.getLocation();
 
-        const mapPos = FieldUtils.instance.getPositionOnMap(touchPos);
+        const mapPos = FieldUtils.instance.getTouchOnMap(touchPos);
         const tile = this.field.fieldCreator.getTileByCoords(mapPos);
-
+        
         if (tile) this.field.tapToTile(tile);
     }
 }

@@ -55,6 +55,10 @@ export default class TileRenderer extends cc.Component {
         this.node.setPosition(pos);
     }
 
+    public getPosition(): cc.Vec2 {
+        return new cc.Vec2(this.node.x, this.node.y);
+    }
+
     public moveTo(pos: cc.Vec2, duration: number, easing: EasingType = EasingType.linear): void {
         if (this.moveTween) this.moveTween.stop();
 
