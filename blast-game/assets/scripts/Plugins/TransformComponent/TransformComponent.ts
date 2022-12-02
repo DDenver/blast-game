@@ -103,8 +103,6 @@ export default class TransformComponent extends cc.Component {
     }
 
     public onSizeChanged() {
-        console.log('onSizeChanged');
-        
         const transform = this.getCurrentTransform();
         transform.setNodeTransform(this.node);
     }

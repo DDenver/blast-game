@@ -8,6 +8,8 @@ enum Events {
     COMPLETE_LEVEL,
     NEXT_LEVEL,
     MAIN_MENU,
+
+    TILE_REMOVED,
 }
 
 export default Events;

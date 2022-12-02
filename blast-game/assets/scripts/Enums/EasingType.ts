@@ -1,49 +1,49 @@
 enum EasingType {
-	constant = 0,
-	linear = 1,
+	constant,
+	linear,
 
-	fade = 4,
-	smooth = 5,
+	fade,
+	smooth,
 
-	backIn = 11,
-	backInOut = 13,
-	backOut = 12,
+	backIn,
+	backInOut,
+	backOut,
 
-	bounceIn = 21,
-	bounceInOut = 23,
-	bounceOut = 22,
+	bounceIn,
+	bounceInOut,
+	bounceOut,
 
-	circIn = 31,
-	circInOut = 33,
-	circOut = 32,
+	circIn,
+	circInOut,
+	circOut,
 
-	cubicIn = 41,
-	cubicInOut = 43,
-	cubicOut = 42,
+	cubicIn,
+	cubicInOut,
+	cubicOut,
 
-	elasticIn = 51,
-	elasticInOut = 53,
-	elasticOut = 52,
+	elasticIn,
+	elasticInOut,
+	elasticOut,
 
-	expoIn = 61,
-	expoInOut = 63,
-	expoOut = 62,
+	expoIn,
+	expoInOut,
+	expoOut,
 
-	quadIn = 71,
-	quadInOut = 73,
-	quadOut = 72,
+	quadIn,
+	quadInOut,
+	quadOut,
 
-	quartIn = 81,
-	quartInOut = 83,
-	quartOut = 82,
+	quartIn,
+	quartInOut,
+	quartOut,
 
-	quintIn = 91,
-	quintInOut = 93,
-	quintOut = 92,
+	quintIn,
+	quintInOut,
+	quintOut,
 
-	sineIn = 101,
-	sineInOut = 103,
-	sineOut = 102,
+	sineIn,
+	sineInOut,
+	sineOut,
 }
 
 export default EasingType;

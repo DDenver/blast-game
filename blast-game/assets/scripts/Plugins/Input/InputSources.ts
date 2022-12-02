@@ -3,7 +3,9 @@ enum InputSources {
 
 	CommonCatcher,
 	Field,
-	
+
+	NewGameButton,
+	AchievementsButton
 }
 
 export default InputSources;

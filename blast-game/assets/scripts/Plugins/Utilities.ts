@@ -1,6 +1,6 @@
 
 export default class Utilities {
-    
+
     static randomItem<T>(items: T[]): T {
         return items[Math.floor(Math.random() * items.length)];
     }
@@ -21,7 +21,29 @@ export default class Utilities {
     }
 
     static getRandomElementFromArray<T>(array: T[]): T {
-        const index: number = this.getRandomInt(0, array.length);
+        const index: number = this.getRandomInt(0, array.length - 1);
         return array[index];
+    }
+
+    static convertToVec3(x: number | cc.Vec2, y?: number, z?: number): cc.Vec3 {
+        if (x instanceof cc.Vec2) {
+            return new cc.Vec3(x.x, x.y);
+        } else {
+            return new cc.Vec3(x, y ? y : 0, z ? z : 0);
+        }
+    }
+
+    static getEnumKeys(e): string[] {
+        const keys = [];
+
+        for (const k in e) {
+            keys.push(k);
+        }
+
+        return keys;
+    }
+
+    static getRandomEnumKey(e): string {
+        return Utilities.getRandomElementFromArray(Utilities.getEnumKeys(e));
     }
 }

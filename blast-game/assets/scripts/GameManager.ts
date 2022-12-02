@@ -1,9 +1,8 @@
 import Events from './Enums/Events';
+import SceneNames from './Enums/SceneNames';
 import Settings from "./Plugins/Settings";
 
-
 const { ccclass, property } = cc._decorator;
-
 
 @ccclass
 export default class GameManager extends cc.Component {
@@ -18,9 +17,10 @@ export default class GameManager extends cc.Component {
 
     start(): void {
         this.windowResized();
-        this.scheduleOnce(() => {
-            this.loadScene();
-        }, 0.5)
+
+        this.scheduleOnce(()=>{
+            this.newGame();
+        }, 0.5);
     }
 
 
@@ -30,10 +30,10 @@ export default class GameManager extends cc.Component {
         });
 
         cc.systemEvent.on(Events.NEW_GAME.toString(), this.newGame, this);
-        cc.systemEvent.on(Events.RESTART_GAME.toString(), this.newGame, this);
-        cc.systemEvent.on(Events.COMPLETE_LEVEL.toString(), this.newGame, this);
-        cc.systemEvent.on(Events.NEXT_LEVEL.toString(), this.newGame, this);
-        cc.systemEvent.on(Events.MAIN_MENU.toString(), this.newGame, this);
+        cc.systemEvent.on(Events.RESTART_GAME.toString(), this.restartGame, this);
+        cc.systemEvent.on(Events.COMPLETE_LEVEL.toString(), this.completeLevel, this);
+        cc.systemEvent.on(Events.NEXT_LEVEL.toString(), this.nextLevel, this);
+        cc.systemEvent.on(Events.MAIN_MENU.toString(), this.mainMenu, this);
     }
 
     private windowResized(): void {
@@ -41,15 +41,33 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.emit(Events.WINDOW_RESIZED.toString(), this.settings);
     }
 
-    private newGame() {
-
-    }
-
-    private loadScene(): void {
-        cc.director.loadScene('Result', () => {
-            console.log('Result Loaded');
+    private loadScene(name: SceneNames = SceneNames.MAIN, callback?: () => {}): void {
+        cc.director.loadScene(name, () => {
+            if (callback) callback();
             this.windowResized();
+            
+            console.log(`Scene ${name} Loaded...`);
         });
     }
 
+
+    private newGame() {
+        this.loadScene(SceneNames.GAME);
+    }
+
+    private restartGame() {
+        this.loadScene(SceneNames.GAME);
+    }
+
+    private completeLevel() {
+        this.loadScene(SceneNames.RESULT);
+    }
+
+    private nextLevel() {
+        this.loadScene(SceneNames.GAME);
+    }
+
+    private mainMenu() {
+        this.loadScene(SceneNames.MAIN);
+    }
 }
