@@ -18,7 +18,6 @@ export default class Field extends cc.Component {
 
     onLoad() {
         this.init();
-        console.log('Field');
     }
 
     start() {
@@ -30,7 +29,7 @@ export default class Field extends cc.Component {
         this.fieldInput = new FieldInput(this);
 
         this.fieldCreator.crateField();
-        // this.fieldInput.enable();
+        this.fieldInput.enable();
     }
 
     public setState(state: FieldState): void {
@@ -40,7 +39,7 @@ export default class Field extends cc.Component {
     }
 
     public tapToTile(tile: Tile): void {
-        this.state.tapToTile(tile);
+        // this.state.tapToTile(tile);
     }
 
     // update (dt) {}

@@ -35,8 +35,27 @@ export default class FieldUtils {
     }
 
     public getPositionOnMap(touchPos: cc.Vec2): cc.Vec2 {
-        return cc.Vec2.ZERO;
+        const localNodePos = this.field.node.convertToNodeSpaceAR(touchPos);
+        const deltaX = Math.abs(localNodePos.x - this.startPoint.x);
+        const deltaY = Math.abs(localNodePos.y - this.startPoint.y);
+
+        const posOnMap = new cc.Vec2(
+            Math.round(deltaX / (this.tileScaledSize.width + this.offset.x)),
+            Math.round(deltaY / (this.tileScaledSize.height + this.offset.y))
+        )
+
+        const nearPoin = this.getMapToWorldPos(posOnMap);
+        const distanceX = Math.abs(localNodePos.x - nearPoin.x);
+        const distanceY = Math.abs(localNodePos.y - nearPoin.y);
+
+        if (
+            (distanceX <= this.tileScaledSize.width / 2)
+            && (distanceY <= this.tileScaledSize.height / 2)
+        ) {
+            return posOnMap
+        } else return null;
     }
+
     public getMapToWorldPos(mapPos: cc.Vec2): cc.Vec2 {
         const posX = mapPos.x * (this.tileScaledSize.width + this.offset.x);
         const posY = mapPos.y * (this.tileScaledSize.height + this.offset.y);

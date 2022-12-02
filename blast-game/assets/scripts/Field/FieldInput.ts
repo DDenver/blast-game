@@ -5,12 +5,12 @@ import InputTypes from '../Plugins/Input/InputTypes';
 import Field from './Field';
 import FieldUtils from './FieldUtils';
 
-export default class FieldInput{
+export default class FieldInput {
     public field: Field = null;
 
     private isEnable: boolean = false;
 
-    constructor(field: Field){
+    constructor(field: Field) {
         this.field = field;
 
         this.init();
@@ -33,10 +33,8 @@ export default class FieldInput{
         const touchPos = data.eventTouch.getLocation();
 
         const mapPos = FieldUtils.instance.getPositionOnMap(touchPos);
-        const tile  = this.field.fieldCreator.getTileByCoords(mapPos);
+        const tile = this.field.fieldCreator.getTileByCoords(mapPos);
 
-
-        console.log(touchPos, 'touchPos', mapPos);
-        
+        if (tile) this.field.tapToTile(tile);
     }
 }
