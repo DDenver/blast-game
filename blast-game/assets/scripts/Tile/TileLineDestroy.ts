@@ -14,6 +14,7 @@ export default class TileLineDestroy extends Tile {
 
     public init<T extends TileLineConfig>(initData: T): void {
         this.config.spriteFrame = initData.spriteFrame;
+        this.tileRenderer.setSpriteFrame(initData.spriteFrame);
         this.config.typeDestroy = initData.typeDestroy;
     }
 }

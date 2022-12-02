@@ -15,6 +15,7 @@ export default class TileAreaDestroy extends Tile {
 
     public init<T extends TileAreaConfig>(initData: T): void {
         this.config.spriteFrame = initData.spriteFrame;
+        this.tileRenderer.setSpriteFrame(initData.spriteFrame);
         this.config.typeDestroy = initData.typeDestroy;
         this.config.radius = initData.radius;
     }

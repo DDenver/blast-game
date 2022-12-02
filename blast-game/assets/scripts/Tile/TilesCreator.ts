@@ -1,9 +1,10 @@
 import Events from '../Enums/Events';
+import Field from '../Field/Field';
 import Utilities from '../Plugins/Utilities';
 import Tile from './Tile';
 import TileAreaDestroy, { TileAreaConfig } from './TileAreaDestroy';
 import TileColorDestroy, { TileColorConfig } from './TileColorDestroy';
-import { AreaDestroy, ColorDestroy, LineDestroy, TileAbilityTypes } from './TileConstants';
+import { AreaDestroy, ColorDestroy, LineDestroy } from './TileConstants';
 import TileLineDestroy, { TileLineConfig } from './TileLineDestroy';
 import TilesPool from './TilesPool';
 
@@ -11,6 +12,7 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class TilesCreator extends cc.Component {
+    @property(cc.Component) field: Field = null; // todo get from Level Manager
     @property(cc.Prefab) tileColorPrefab: cc.Prefab = null;
     @property(cc.Prefab) tileLinePrefab: cc.Prefab = null;
     @property(cc.Prefab) tileAreaPrefab: cc.Prefab = null;
@@ -23,8 +25,12 @@ export default class TilesCreator extends cc.Component {
     private tileLinePool: TilesPool<TileLineDestroy>;
     private tileAreaPool: TilesPool<TileAreaDestroy>;
 
+    onLoad() {
+        this.init(); // todo call in LevelManager
+    }
+
     public init(): void {
-        const parent = this.node // change to Field node
+        const parent = this.field.node // todo change to Field node
 
         this.tileColorPool = new TilesPool(parent, this.tileColorPrefab, TileColorDestroy.name);
         this.tileLinePool = new TilesPool(parent, this.tileLinePrefab, TileLineDestroy.name);

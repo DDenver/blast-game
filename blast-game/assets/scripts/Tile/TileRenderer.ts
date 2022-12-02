@@ -27,6 +27,10 @@ export default class TileRenderer extends cc.Component {
         // }, 2)
     }
 
+    public setScale(scale: number): void {
+        this.node.scale = scale;
+    }
+
     public setSpriteFrame(spriteFrame: cc.SpriteFrame): void {
         this.renderer.spriteFrame = spriteFrame;
     }

@@ -46,4 +46,8 @@ export default class Utilities {
     static getRandomEnumKey(e): string {
         return Utilities.getRandomElementFromArray(Utilities.getEnumKeys(e));
     }
+
+    static multiplySizeByScalar(s1: cc.Size, v: number): cc.Size {
+        return new cc.Size(s1.width * v, s1.height * v);
+    }
 }

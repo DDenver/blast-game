@@ -15,6 +15,7 @@ export default class TileColorDestroy extends Tile {
 
     public init<T extends TileColorConfig>(initData: T): void {
         this.config.spriteFrame = initData.spriteFrame;
+        this.tileRenderer.setSpriteFrame(initData.spriteFrame);
         this.config.typeDestroy = initData.typeDestroy;
         this.config.matchCount = initData.matchCount;
     }

@@ -26,6 +26,10 @@ export default abstract class Tile extends cc.Component {
 
     public abstract init(initData): void;
 
+    public setScale(scale:number){
+        this.tileRenderer.setScale(scale);
+    }
+
     public reset(): void {
 
     }

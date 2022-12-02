@@ -1,3 +1,4 @@
+import FieldUtils from '../Field/FieldUtils';
 import Tile from './Tile';
 
 export default class TilesPool<T extends Tile> {
@@ -22,22 +23,29 @@ export default class TilesPool<T extends Tile> {
         this.component = component;
         this.defaulSize = defaulSize;
         this.defaultPos = defaultPos;
+
+        for (let i = 0; i < this.defaulSize; i++) {
+            this.getTile();
+        }
     }
 
     public getTile(): T {
-        if (this.pool.length > 0) {
-            const tile = this.pool.pop();
-            tile.reset();
+        let tile: T;
 
-            return tile;
+        if (this.pool.length > 0) {
+            tile = this.pool.pop();
+            tile.reset();
         } else {
             const tileNode = cc.instantiate(this.prefab);
             tileNode.setParent(this.parentNode);
 
-            const tile = tileNode.getComponent(this.component);
-
-            return tile;
+            tile = tileNode.getComponent(this.component);
+            tile.setPosition(this.defaultPos);
         }
+
+        if (FieldUtils.instance) tile.setScale(FieldUtils.instance.tileScale);
+
+        return tile;
     }
 
     public addTile(tile: T): void {
