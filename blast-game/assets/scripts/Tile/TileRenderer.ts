@@ -20,11 +20,14 @@ export default class TileRenderer extends cc.Component {
 
     onLoad() {
         this.animation = this.node.getComponent(cc.Animation);
-
         // this.scheduleOnce(async () => {
         //     await this.hide();
         //     this.show();
         // }, 2)
+    }
+
+    public reset(): void {
+        this.renderer.node.scale = 0.001;
     }
 
     public setScale(scale: number): void {

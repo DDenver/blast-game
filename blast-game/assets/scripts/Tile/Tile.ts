@@ -22,6 +22,7 @@ export default abstract class Tile extends cc.Component {
 
     onLoad() {
         this.tileRenderer = this.node.getComponent(TileRenderer);
+        this.reset();
     }
 
     public abstract init(initData): void;
@@ -31,7 +32,7 @@ export default abstract class Tile extends cc.Component {
     }
 
     public reset(): void {
-
+        this.tileRenderer.reset();
     }
 
     public setPosition(pos: cc.Vec2): void {

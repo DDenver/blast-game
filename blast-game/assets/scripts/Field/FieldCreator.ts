@@ -18,13 +18,11 @@ export default class FieldCreator {
                 const tile = this.field.tilesCreator.getTileColorDestroy(true);
                 const tileWordPos = FieldUtils.instance.getMapToWorldPos(new cc.Vec2(x, y));
                 tile.setPosition(tileWordPos);
-
+                tile.show();
+                
                 this.map[y].push(tile);
             }
         }
-
-        console.log(this.map);
-
     }
 
     public getTileByCoords(coords: cc.Vec2): Tile {

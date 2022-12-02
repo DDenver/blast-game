@@ -3,6 +3,7 @@ import TilesCreator from '../Tile/TilesCreator';
 import FieldCreator from './FieldCreator';
 import FieldInput from './FieldInput';
 import FieldState from './FieldStates/FieldState';
+import FieldStateCreation from './FieldStates/FieldStateCreation';
 import FieldUtils from './FieldUtils';
 
 const { ccclass, property } = cc._decorator;
@@ -28,8 +29,7 @@ export default class Field extends cc.Component {
         this.fieldCreator = new FieldCreator(this);
         this.fieldInput = new FieldInput(this);
 
-        this.fieldCreator.crateField();
-        this.fieldInput.enable();
+        this.setState(new FieldStateCreation(this));
     }
 
     public setState(state: FieldState): void {
@@ -39,7 +39,11 @@ export default class Field extends cc.Component {
     }
 
     public tapToTile(tile: Tile): void {
-        // this.state.tapToTile(tile);
+        this.state.tapToTile(tile);
+    }
+
+    public async waitTimer(time: number): Promise<void> {
+        return new Promise((res) => this.scheduleOnce(() => res(), time));
     }
 
     // update (dt) {}
