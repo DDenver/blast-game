@@ -108,7 +108,6 @@ export default class FieldCreator {
     ): void {
         let tile;
         const isRandom = typeDestroy === null;
-        console.log(isRandom, typeDestroy);
         
         switch (ability) {
             case TileAbilityTypes.AreaDestroy:

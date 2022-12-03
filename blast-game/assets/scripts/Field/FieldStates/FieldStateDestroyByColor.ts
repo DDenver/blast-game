@@ -32,8 +32,6 @@ export default class FieldStateDestroyByColor extends FieldState {
         let typeDestroy;
         const matchingCount = siblings.length;
 
-        
-
         if (matchingCount === 4) {
             tileAbility = TileAbilityTypes.LineDestroy;
         } else if (matchingCount > 4 && matchingCount <= 6) {
@@ -43,9 +41,6 @@ export default class FieldStateDestroyByColor extends FieldState {
             tileAbility = TileAbilityTypes.AreaDestroy;
             typeDestroy = AreaDestroy.All;
         }
-
-        console.log(matchingCount, 'matchingCount', typeDestroy);
-
 
         const posOnMap = FieldUtils.instance.getPositionOnMap(this.field.focusTile.getPosition());
         await this.removeTiles(siblings);

@@ -58,10 +58,13 @@ export default class Field extends cc.Component {
 
         while (needCheck.length > 0) {
             const currentTile = needCheck.pop();
-            const neighbors = this.fieldCreator.getNeighbors(currentTile) as TileColorDestroy[];
+            const neighbors = this.fieldCreator.getNeighbors(currentTile);
 
             neighbors.forEach((neighbor) => {
-                if (neighbor.config.typeDestroy === tile.config.typeDestroy) {
+                if (
+                    neighbor instanceof TileColorDestroy
+                    && neighbor.config.typeDestroy === tile.config.typeDestroy
+                ) {
                     needCheck.push(neighbor);
                     siblings.push(neighbor);
                     neighbor.needMatch = true;

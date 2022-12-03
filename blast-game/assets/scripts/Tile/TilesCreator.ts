@@ -73,7 +73,6 @@ export default class TilesCreator extends cc.Component {
         const tile = this.tileAreaPool.getTile();
         type = isRandom ? AreaDestroy[Utilities.getRandomEnumKey(AreaDestroy)] : type;
         const config = this.tileAreaConig.find(t => t.typeDestroy === type);
-        console.log('getTileAreaDestroy', type, config);
         
         tile.init(config);
 

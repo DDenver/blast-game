@@ -36,7 +36,6 @@ export default class FieldUtils {
 
     public getTouchOnMap(touchPos: cc.Vec2): cc.Vec2 {
         const localNodePos = this.field.node.convertToNodeSpaceAR(touchPos);
-        console.log(this.getPositionOnMap(localNodePos).toString(), localNodePos.toString(), 'mapPos');
 
         return this.getPositionOnMap(localNodePos);
     }
