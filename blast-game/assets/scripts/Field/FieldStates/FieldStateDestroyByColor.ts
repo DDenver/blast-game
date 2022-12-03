@@ -4,7 +4,6 @@ import { AreaDestroy, TileAbilityTypes } from '../../Tile/TileConstants';
 import FieldUtils from '../FieldUtils';
 import FieldState from './FieldState';
 import FieldStateFallTiles from './FieldStateFallTiles';
-import FiledStateWaiting from './FiledStateWaiting';
 
 export default class FieldStateDestroyByColor extends FieldState {
     tapToTile(tile: Tile): void { }
@@ -29,7 +28,7 @@ export default class FieldStateDestroyByColor extends FieldState {
 
     private async upgradeTile(siblings: Tile[]): Promise<void> {
         let tileAbility;
-        let typeDestroy;
+        let typeDestroy = null;
         const matchingCount = siblings.length;
 
         if (matchingCount === 4) {
