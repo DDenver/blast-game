@@ -4,7 +4,7 @@ import Field from './Field';
 export default class FieldUtils {
     public static instance: FieldUtils = null;
 
-    private _fieldSize: cc.Size = new cc.Size(3, 3);
+    private _fieldSize: cc.Size = new cc.Size(7, 7);
     public get fieldSize(): cc.Size {
         return this._fieldSize;
     }

@@ -8,6 +8,11 @@ enum AnimationNames {
     Hide = 'tile_hide',
     Focus = 'tile_focus',
     CantMatching = 'tile_cant_matching',
+    Swap = 'tile_swap',
+}
+
+enum AnimationEvents {
+    Swap = 'tile_swap_mid',
 }
 
 @ccclass()
@@ -17,6 +22,7 @@ export default class TileRenderer extends cc.Component {
     private animation: cc.Animation = null;
     private moveTween: cc.Tween = null;
 
+    private swapPos: cc.Vec2 = cc.Vec2.ZERO;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -56,6 +62,12 @@ export default class TileRenderer extends cc.Component {
         await this.playAnimation(AnimationNames.Focus);
     }
 
+    public async playSwapAnim(pos: cc.Vec2): Promise<void> {
+        this.swapPos = pos.clone();
+
+        await this.playAnimation(AnimationNames.Swap);
+    }
+
     public async playCantMatching(): Promise<void> {
         await this.playAnimation(AnimationNames.CantMatching);
     }
@@ -83,5 +95,15 @@ export default class TileRenderer extends cc.Component {
             this.animation.play(name);
             this.animation.once(cc.Animation.EventType.FINISHED, () => res());
         });
+    }
+
+    private animationEventHandler(e: AnimationEvents): void {
+        switch (e) {
+            case AnimationEvents.Swap:
+            default:
+                if (this.swapPos) this.setPosition(this.swapPos);
+
+                break;
+        }
     }
 }

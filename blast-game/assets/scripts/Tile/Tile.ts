@@ -66,4 +66,8 @@ export default abstract class Tile extends cc.Component {
     public async cantMatching(): Promise<void>{
         await this.tileRenderer.playCantMatching();
     }
+
+    public async swap(pos: cc.Vec2): Promise<void>{
+        await this.tileRenderer.playSwapAnim(pos);
+    }
 }

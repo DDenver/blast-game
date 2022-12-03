@@ -17,7 +17,7 @@ export default class FieldCreator {
 
     public crateField(): void {
         this.map = [];
-        
+
         for (let y = 0; y < FieldUtils.instance.fieldSize.height; y++) {
             this.map.push([]);
             for (let x = 0; x < FieldUtils.instance.fieldSize.width; x++) {
@@ -153,6 +153,20 @@ export default class FieldCreator {
         tile.show();
 
         this.map[posOnMap.y][posOnMap.x] = tile;
+    }
+
+    public async swapTiles(tileFirst: Tile, tileSecond: Tile): Promise<void> {
+        const tileFirstPos = tileFirst.getPosition();
+        const tileSecondPos = tileSecond.getPosition();
+
+        const tileFirstOnMap = FieldUtils.instance.getPositionOnMap(tileFirstPos);
+        const tileSecondOnMap = FieldUtils.instance.getPositionOnMap(tileSecondPos);
+
+        this.map[tileFirstOnMap.y][tileFirstOnMap.x] = tileSecond;
+        this.map[tileSecondOnMap.y][tileSecondOnMap.x] = tileSecond;
+
+        tileFirst.swap(tileSecondPos);
+        await tileSecond.swap(tileFirstPos);
     }
 
     private fallTile(tile: Tile, mapPos: cc.Vec2, time: number, easing: EasingType): void {
