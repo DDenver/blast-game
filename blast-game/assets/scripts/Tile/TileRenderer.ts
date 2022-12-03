@@ -38,8 +38,12 @@ export default class TileRenderer extends cc.Component {
         this.renderer.spriteFrame = spriteFrame;
     }
 
-    public show(): void {
-        this.animation.play(AnimationNames.Show);
+    public show(useAnim: boolean = true): void {
+        if (useAnim) {
+            this.animation.play(AnimationNames.Show)
+        } else {
+            this.renderer.node.scale = 1;
+        };
     }
 
     public async hide(): Promise<void> {

@@ -1,3 +1,4 @@
+import EasingType from '../Enums/EasingType';
 import Tile from '../Tile/Tile';
 import Field from './Field';
 import FieldUtils from './FieldUtils';
@@ -55,10 +56,53 @@ export default class FieldCreator {
             const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
             this.map[pos.y][pos.x] = null;
             tile.remove();
+            console.log('removeTiles');
+
         });
     }
 
     public async updateMap(): Promise<void> {
+        const fallSpeed = 0.3; // todo add to fieldConfig
+        const easing = EasingType.bounceOut; // todo add to fieldConfig
+        const fallTimeLimit = 0.6; // todo add to fieldConfig
+        
+        let maxFallTime = 0;
 
+        for (let x = 0; x < FieldUtils.instance.fieldSize.width; x++) {
+            let counter = 0;
+
+            for (let y = FieldUtils.instance.fieldSize.height - 1; y >= 0; y--) {
+                const tile = this.map[y][x];
+
+                if (!tile) {
+                    counter++
+                } else {
+                    const newMapPos = y + counter;
+                    this.map[y][x] = null;
+
+                    const fallTime = Math.min(counter * fallSpeed, fallTimeLimit);
+                    maxFallTime = Math.max(fallTime, maxFallTime);
+                    this.fallTile(tile, new cc.Vec2(x, newMapPos), fallTime, easing);
+                };
+            }
+
+            for (let i = 1; i <= counter; i++) {
+                const newTile = this.field.tilesCreator.getTileColorDestroy(true);
+                const tileWordPos = FieldUtils.instance.getMapToWorldPos(new cc.Vec2(x, -(i)));
+                newTile.setPosition(tileWordPos);
+                newTile.show(false);
+
+                const fallTime = Math.min(counter * fallSpeed, fallTimeLimit);
+                this.fallTile(newTile, new cc.Vec2(x, counter - (i)), fallTime, easing);
+            }
+        }
+
+        await this.field.waitTimer(maxFallTime);
+    }
+
+    private fallTile(tile: Tile, mapPos: cc.Vec2, time: number, easing: EasingType): void {
+        const worldPos = FieldUtils.instance.getMapToWorldPos(mapPos);
+        tile.fallDown(worldPos, time, easing);
+        this.map[mapPos.y][mapPos.x] = tile;
     }
 }

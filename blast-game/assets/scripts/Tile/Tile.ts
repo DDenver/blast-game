@@ -34,6 +34,7 @@ export default abstract class Tile extends cc.Component {
     }
 
     public reset(): void {
+        this.needMatch = false;
         this.tileRenderer.reset();
     }
 
@@ -54,7 +55,7 @@ export default abstract class Tile extends cc.Component {
         cc.systemEvent.emit(Events.TILE_REMOVED.toString(), this);
     }
 
-    public show(): void {
-        this.tileRenderer.show();
+    public show(useAnim: boolean = true): void {
+        this.tileRenderer.show(useAnim);
     }
 }
