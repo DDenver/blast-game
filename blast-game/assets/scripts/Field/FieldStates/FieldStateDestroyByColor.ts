@@ -9,11 +9,12 @@ export default class FieldStateDestroyByColor extends FieldState {
 
     async enterToState(): Promise<void> {
         const siblings = this.field.getSiblingsByColor(this.field.focusTile as TileColorDestroy);
-        console.log(siblings, 'siblings');
+
+        // if (siblings.length === 0) 
 
         this.field.removeTiles(siblings);
         this.field.focusTile = null;
-        await this.field.waitTimer(0.25);
+        await this.field.waitTimer(0.25);// wait remove tiles
 
         this.field.setState(new FieldStateFallTiles(this.field));
     }
