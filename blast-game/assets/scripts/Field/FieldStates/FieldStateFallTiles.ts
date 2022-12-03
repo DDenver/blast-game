@@ -1,5 +1,6 @@
 import Tile from '../../Tile/Tile';
 import FieldState from './FieldState';
+import FieldStateMixTiles from './FieldStateMixTiles';
 import FiledStateWaiting from './FiledStateWaiting';
 
 export default class FieldStateFallTiles extends FieldState {
@@ -8,6 +9,10 @@ export default class FieldStateFallTiles extends FieldState {
     async enterToState(): Promise<void> {
         await this.field.updateMap();
 
-        this.field.setState(new FiledStateWaiting(this.field));
+        if (this.field.checkToMix()) {
+            this.field.setState(new FieldStateMixTiles(this.field));
+        } else {
+            this.field.setState(new FiledStateWaiting(this.field));
+        }
     }
 }

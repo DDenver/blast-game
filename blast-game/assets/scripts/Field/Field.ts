@@ -92,5 +92,27 @@ export default class Field extends cc.Component {
         this.fieldCreator.addTileOnMap(posOnMap, ability, typeDestroy);
     }
 
+    public checkToMix(): boolean {
+        const allTiles = this.fieldCreator.getAllTiles();
+
+            for (let i = 0; i < allTiles.length; i++) {
+            const tile = allTiles[i];
+            const neighbors = this.fieldCreator.getNeighbors(tile);
+                const hasSameColor = neighbors.some(n => this.checkSameColor(tile, n) || !(n instanceof TileColorDestroy));
+
+            if (hasSameColor) return false;
+        }
+
+        return true;
+    };
+
+    private checkSameColor(firstTile: Tile, secondTile: Tile): boolean {
+        return (
+            firstTile instanceof TileColorDestroy
+            && secondTile instanceof TileColorDestroy
+            && firstTile.config.typeDestroy === secondTile.config.typeDestroy
+        );
+    }
+
     // update (dt) {}
 }

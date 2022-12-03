@@ -22,6 +22,6 @@ export default class FiledStateWaiting extends FieldState {
                 break;
         }
     }
-    
+
     enterToState(): void { }
 }

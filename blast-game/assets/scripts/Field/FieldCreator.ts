@@ -16,6 +16,8 @@ export default class FieldCreator {
     }
 
     public crateField(): void {
+        this.map = [];
+        
         for (let y = 0; y < FieldUtils.instance.fieldSize.height; y++) {
             this.map.push([]);
             for (let x = 0; x < FieldUtils.instance.fieldSize.width; x++) {
@@ -122,6 +124,7 @@ export default class FieldCreator {
                 newTile.show(false);
 
                 const fallTime = Math.min(counter * fallSpeed, fallTimeLimit);
+                maxFallTime = Math.max(fallTime, maxFallTime);
                 this.fallTile(newTile, new cc.Vec2(x, counter - (i)), fallTime, easing);
             }
         }
