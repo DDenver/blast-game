@@ -54,6 +54,30 @@ export default class FieldCreator {
         return neighbors;
     }
 
+    public getAllTiles(): Tile[] {
+        const tiles = [];
+
+        for (let i = 0; i < this.map.length; i++) {
+            tiles.push(...this.map[i]);
+        }
+
+        return tiles;
+    }
+
+    public getRow(rowIndex: number): Tile[] {
+        return [...this.map[rowIndex]];
+    }
+
+    public getCol(colIndex: number): Tile[] {
+        const col = [];
+
+        for (let i = 0; i < FieldUtils.instance.fieldSize.height; i++) {
+            col.push(this.map[i][colIndex]);
+        }
+
+        return col;
+    }
+
     public removeTile(tile: Tile): void {
         const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
         this.map[pos.y][pos.x] = null;
@@ -126,20 +150,6 @@ export default class FieldCreator {
         tile.show();
 
         this.map[posOnMap.y][posOnMap.x] = tile;
-    }
-
-    public getRow(rowIndex: number): Tile[] {
-        return [...this.map[rowIndex]];
-    }
-
-    public getCol(colIndex: number): Tile[] {
-        const col = [];
-
-        for (let i = 0; i < FieldUtils.instance.fieldSize.height; i++) {
-            col.push(this.map[i][colIndex]);
-        }
-
-        return col;
     }
 
     private fallTile(tile: Tile, mapPos: cc.Vec2, time: number, easing: EasingType): void {
