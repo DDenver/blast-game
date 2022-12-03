@@ -1,5 +1,8 @@
 import EasingType from '../Enums/EasingType';
 import Tile from '../Tile/Tile';
+import TileAreaDestroy from '../Tile/TileAreaDestroy';
+import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
+import TileLineDestroy from '../Tile/TileLineDestroy';
 import Field from './Field';
 import FieldUtils from './FieldUtils';
 
@@ -56,8 +59,6 @@ export default class FieldCreator {
             const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
             this.map[pos.y][pos.x] = null;
             tile.remove();
-            console.log('removeTiles');
-
         });
     }
 
@@ -65,7 +66,7 @@ export default class FieldCreator {
         const fallSpeed = 0.3; // todo add to fieldConfig
         const easing = EasingType.bounceOut; // todo add to fieldConfig
         const fallTimeLimit = 0.6; // todo add to fieldConfig
-        
+
         let maxFallTime = 0;
 
         for (let x = 0; x < FieldUtils.instance.fieldSize.width; x++) {
@@ -98,6 +99,31 @@ export default class FieldCreator {
         }
 
         await this.field.waitTimer(maxFallTime);
+    }
+
+    public addTileOnMap(
+        posOnMap: cc.Vec2,
+        ability: TileAbilityTypes,
+        typeDestroy: LineDestroy | AreaDestroy
+    ): void {
+        let tile;
+        const isRandom = typeDestroy === null;
+        console.log(isRandom, typeDestroy);
+        
+        switch (ability) {
+            case TileAbilityTypes.AreaDestroy:
+                tile = this.field.tilesCreator.getTileAreaDestroy(isRandom, typeDestroy as AreaDestroy);
+
+                break;
+            case TileAbilityTypes.LineDestroy:
+                tile = this.field.tilesCreator.getTileLineDestroy(isRandom, typeDestroy as LineDestroy);
+                break;
+        }
+
+        tile.setPosition(FieldUtils.instance.getMapToWorldPos(posOnMap));
+        tile.show();
+        
+        this.map[posOnMap.y][posOnMap.x] = tile;
     }
 
     private fallTile(tile: Tile, mapPos: cc.Vec2, time: number, easing: EasingType): void {

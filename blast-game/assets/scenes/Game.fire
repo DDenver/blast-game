@@ -1387,7 +1387,7 @@
     "spriteFrame": {
       "__uuid__": "ffa82989-228d-4219-aa40-714205818338"
     },
-    "typeDestroy": 0,
+    "typeDestroy": 1,
     "radius": -1
   },
   {

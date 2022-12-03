@@ -58,4 +58,12 @@ export default abstract class Tile extends cc.Component {
     public show(useAnim: boolean = true): void {
         this.tileRenderer.show(useAnim);
     }
+
+    public async focus(): Promise<void>{
+        await this.tileRenderer.playFocusAnim();
+    }
+
+    public async cantMatching(): Promise<void>{
+        await this.tileRenderer.playCantMatching();
+    }
 }

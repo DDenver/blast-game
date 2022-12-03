@@ -6,6 +6,8 @@ const { ccclass, property } = cc._decorator;
 enum AnimationNames {
     Show = 'tile_show',
     Hide = 'tile_hide',
+    Focus = 'tile_focus',
+    CantMatching = 'tile_cant_matching',
 }
 
 @ccclass()
@@ -47,12 +49,15 @@ export default class TileRenderer extends cc.Component {
     }
 
     public async hide(): Promise<void> {
-        return new Promise((res) => {
-            this.animation.play(AnimationNames.Hide);
-            this.animation.once(cc.Animation.EventType.FINISHED, () => {
-                res();
-            });
-        });
+        await this.playAnimation(AnimationNames.Hide);
+    }
+
+    public async playFocusAnim(): Promise<void> {
+        await this.playAnimation(AnimationNames.Focus);
+    }
+
+    public async playCantMatching(): Promise<void> {
+        await this.playAnimation(AnimationNames.CantMatching);
     }
 
     public setPosition(pos: cc.Vec2): void {
@@ -71,5 +76,12 @@ export default class TileRenderer extends cc.Component {
                 { position: Utilities.convertToVec3(pos) },
                 { easing: cc.easing[EasingType[easing]] }
             ).start();
+    }
+
+    private async playAnimation(name: AnimationNames): Promise<void> {
+        return new Promise((res) => {
+            this.animation.play(name);
+            this.animation.once(cc.Animation.EventType.FINISHED, () => res());
+        });
     }
 }

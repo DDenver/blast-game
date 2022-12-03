@@ -1,5 +1,6 @@
 import Tile from '../Tile/Tile';
 import TileColorDestroy from '../Tile/TileColorDestroy';
+import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
 import TilesCreator from '../Tile/TilesCreator';
 import FieldCreator from './FieldCreator';
 import FieldInput from './FieldInput';
@@ -58,7 +59,7 @@ export default class Field extends cc.Component {
         while (needCheck.length > 0) {
             const currentTile = needCheck.pop();
             const neighbors = this.fieldCreator.getNeighbors(currentTile) as TileColorDestroy[];
-            
+
             neighbors.forEach((neighbor) => {
                 if (neighbor.config.typeDestroy === tile.config.typeDestroy) {
                     needCheck.push(neighbor);
@@ -67,7 +68,7 @@ export default class Field extends cc.Component {
                 }
             })
         }
-        
+
 
         return siblings;
     }
@@ -76,8 +77,16 @@ export default class Field extends cc.Component {
         this.fieldCreator.removeTiles(tiles);
     }
 
-    public async updateMap(): Promise<void>{
+    public async updateMap(): Promise<void> {
         await this.fieldCreator.updateMap();
+    }
+
+    public addUpgradedTile(
+        posOnMap: cc.Vec2,
+        ability: TileAbilityTypes,
+        typeDestroy: LineDestroy | AreaDestroy
+    ): void {
+        this.fieldCreator.addTileOnMap(posOnMap, ability, typeDestroy);
     }
 
     // update (dt) {}
