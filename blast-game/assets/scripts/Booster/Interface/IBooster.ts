@@ -7,6 +7,7 @@ export default interface IBooster {
     enable(): void,
     disable(): void,
     getCount(): number,
+    use(): void,
     onTap(): void,
 }
 
