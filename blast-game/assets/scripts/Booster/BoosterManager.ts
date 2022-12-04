@@ -45,8 +45,8 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
 
     public useActiveBooster(): void {
         this._activeBoosterType = null;
-        this.activeBooster.use();
         this.toggleEnableBoosters(true);
+        this.activeBooster.use();
     }
 
     private toggleEnableBoosters(isEnable: boolean): void {

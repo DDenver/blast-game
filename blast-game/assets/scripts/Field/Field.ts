@@ -1,3 +1,5 @@
+import BoosterManager from '../Booster/BoosterManager';
+import IBoosterManager from '../Booster/Interface/IBoosterManager';
 import Tile from '../Tile/Tile';
 import TileColorDestroy from '../Tile/TileColorDestroy';
 import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
@@ -13,6 +15,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass()
 export default class Field extends cc.Component {
     @property(TilesCreator) tilesCreator: TilesCreator = null;
+    @property(BoosterManager) boosterManager: IBoosterManager = null;
     @property(cc.Node) renderer: cc.Node = null;
 
     public fieldInput: FieldInput;

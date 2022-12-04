@@ -163,7 +163,7 @@ export default class FieldCreator {
         const tileSecondOnMap = FieldUtils.instance.getPositionOnMap(tileSecondPos);
 
         this.map[tileFirstOnMap.y][tileFirstOnMap.x] = tileSecond;
-        this.map[tileSecondOnMap.y][tileSecondOnMap.x] = tileSecond;
+        this.map[tileSecondOnMap.y][tileSecondOnMap.x] = tileFirst;
 
         tileFirst.swap(tileSecondPos);
         await tileSecond.swap(tileFirstPos);

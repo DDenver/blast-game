@@ -5,10 +5,11 @@ import FiledStateWaiting from './FiledStateWaiting';
 export default class FieldStateSwap extends FieldState {
     async tapToTile(tile: Tile): Promise<void> {
         await tile.focus();
-        await this.field.fieldCreator.swapTiles(tile, this.field.focusTile)
+        await this.field.fieldCreator.swapTiles(tile, this.field.focusTile);
 
         this.field.focusTile = null;
 
+        this.field.boosterManager.useActiveBooster();
         this.field.setState(new FiledStateWaiting(this.field));
     }
 

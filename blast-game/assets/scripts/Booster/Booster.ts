@@ -45,12 +45,12 @@ export default class Booster extends cc.Component implements IBooster {
     public use(): void {
         this.counter--;
         this.renderer.setCount(this.counter);
-        this.renderer.activate();
+        this.renderer.deactivate();
     }
 
     public onTap(): void {
         if (this.counter === 0) return;
-        
+
         this.renderer.activate();
         this.manager.activateBooster(this);
     }
