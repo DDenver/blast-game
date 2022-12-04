@@ -1,11 +1,12 @@
 import { BoosterConfig } from '../BoosterConfig';
+import IBoosterManager from './IBoosterManager';
 
 export default interface IBooster {
     config: BoosterConfig,
-    counter: number,
-    init(config: BoosterConfig): void,
+    init(manager: IBoosterManager, config: BoosterConfig): void,
     enable(): void,
     disable(): void,
+    getCount(): number,
     onTap(): void,
 }
 
