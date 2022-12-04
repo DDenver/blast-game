@@ -4,6 +4,8 @@ enum InputSources {
 	CommonCatcher,
 	Field,
 
+	BoosterButton,
+
 	NewGameButton,
 	AchievementsButton
 }

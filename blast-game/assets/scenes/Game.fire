@@ -1711,7 +1711,7 @@
         "__id__": 236
       },
       {
-        "__id__": 360
+        "__id__": 365
       }
     ],
     "_active": true,
@@ -4045,7 +4045,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bonuses",
+    "_name": "Boosters",
     "_objFlags": 0,
     "_parent": {
       "__id__": 104
@@ -4058,7 +4058,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 325
+        "__id__": 329
+      },
+      {
+        "__id__": 330
       }
     ],
     "_prefab": null,
@@ -4121,10 +4124,10 @@
         "__id__": 238
       },
       {
-        "__id__": 278
+        "__id__": 282
       },
       {
-        "__id__": 285
+        "__id__": 289
       }
     ],
     "_active": true,
@@ -4179,7 +4182,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bonus_1",
+    "_name": "Booster",
     "_objFlags": 0,
     "_parent": {
       "__id__": 237
@@ -4199,6 +4202,15 @@
     "_components": [
       {
         "__id__": 245
+      },
+      {
+        "__id__": 247
+      },
+      {
+        "__id__": 248
+      },
+      {
+        "__id__": 281
       }
     ],
     "_prefab": null,
@@ -4212,8 +4224,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 360,
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4307,8 +4319,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "6fL4HcGetBN7ybkX/pNN8c"
   },
   {
@@ -4401,8 +4413,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "a16lZwH8xONqtmvYPK6k2+"
   },
   {
@@ -4439,7 +4451,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Value",
+    "_name": "Counter",
     "_objFlags": 0,
     "_parent": {
       "__id__": 238
@@ -4495,8 +4507,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "c2wXwC8PRC9qVI8U1j7EgW"
   },
   {
@@ -4535,6 +4547,42 @@
     "_id": "e3HJyr6c5FFIXK+Xp7VzmG"
   },
   {
+    "__type__": "c6bael7JGxMO7E4O7gsEbL1",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 238
+    },
+    "_enabled": true,
+    "config": {
+      "__id__": 246
+    },
+    "_id": "22U8JNAVxFVoF2sD7Qwi3T"
+  },
+  {
+    "__type__": "BoosterConfig",
+    "type": 3,
+    "icon": null,
+    "startCount": 3
+  },
+  {
+    "__type__": "87fb0dUc9hGQKn3DFDdU4DB",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 238
+    },
+    "_enabled": true,
+    "icon": {
+      "__id__": 242
+    },
+    "counter": {
+      "__id__": 244
+    },
+    "easing": 23,
+    "_id": "b8NSN7OCJHKYg/InSO1oAJ"
+  },
+  {
     "__type__": "e52a9044wFPirYVk7hRJ6Sp",
     "_name": "",
     "_objFlags": 0,
@@ -4548,19 +4596,19 @@
     "limitSideRatio": 1.35,
     "commonTransform": null,
     "commonTransformBelowSideRatio": {
-      "__id__": 246
+      "__id__": 249
     },
     "landscapeTransform": {
-      "__id__": 252
+      "__id__": 255
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 259
+      "__id__": 262
     },
     "portraitTransform": {
-      "__id__": 265
+      "__id__": 268
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 272
+      "__id__": 275
     },
     "_id": "65SBXq/KZONqTZFF0dl4B8"
   },
@@ -4568,19 +4616,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 247
-    },
-    "scaleComponent": {
-      "__id__": 248
-    },
-    "rotationComponent": {
-      "__id__": 249
-    },
-    "anchorComponent": {
       "__id__": 250
     },
-    "sizeComponent": {
+    "scaleComponent": {
       "__id__": 251
+    },
+    "rotationComponent": {
+      "__id__": 252
+    },
+    "anchorComponent": {
+      "__id__": 253
+    },
+    "sizeComponent": {
+      "__id__": 254
     }
   },
   {
@@ -4612,26 +4660,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 253
-    },
-    "scaleComponent": {
-      "__id__": 255
-    },
-    "rotationComponent": {
       "__id__": 256
     },
+    "scaleComponent": {
+      "__id__": 258
+    },
+    "rotationComponent": {
+      "__id__": 259
+    },
     "anchorComponent": {
-      "__id__": 257
+      "__id__": 260
     },
     "sizeComponent": {
-      "__id__": 258
+      "__id__": 261
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 254
+      "__id__": 257
     }
   },
   {
@@ -4673,19 +4721,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 260
-    },
-    "scaleComponent": {
-      "__id__": 261
-    },
-    "rotationComponent": {
-      "__id__": 262
-    },
-    "anchorComponent": {
       "__id__": 263
     },
-    "sizeComponent": {
+    "scaleComponent": {
       "__id__": 264
+    },
+    "rotationComponent": {
+      "__id__": 265
+    },
+    "anchorComponent": {
+      "__id__": 266
+    },
+    "sizeComponent": {
+      "__id__": 267
     }
   },
   {
@@ -4717,26 +4765,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 266
-    },
-    "scaleComponent": {
-      "__id__": 268
-    },
-    "rotationComponent": {
       "__id__": 269
     },
+    "scaleComponent": {
+      "__id__": 271
+    },
+    "rotationComponent": {
+      "__id__": 272
+    },
     "anchorComponent": {
-      "__id__": 270
+      "__id__": 273
     },
     "sizeComponent": {
-      "__id__": 271
+      "__id__": 274
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 267
+      "__id__": 270
     }
   },
   {
@@ -4778,19 +4826,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 273
-    },
-    "scaleComponent": {
-      "__id__": 274
-    },
-    "rotationComponent": {
-      "__id__": 275
-    },
-    "anchorComponent": {
       "__id__": 276
     },
-    "sizeComponent": {
+    "scaleComponent": {
       "__id__": 277
+    },
+    "rotationComponent": {
+      "__id__": 278
+    },
+    "anchorComponent": {
+      "__id__": 279
+    },
+    "sizeComponent": {
+      "__id__": 280
     }
   },
   {
@@ -4819,6 +4867,17 @@
     "configuration": null
   },
   {
+    "__type__": "bfd25+KDbhOjY67Qa0BTnuK",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 238
+    },
+    "_enabled": true,
+    "inputSource": 3,
+    "_id": "61ImAv/H5EQ7bv4EYbxGfH"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Bonus_2",
     "_objFlags": 0,
@@ -4827,13 +4886,13 @@
     },
     "_children": [
       {
-        "__id__": 279
-      },
-      {
-        "__id__": 281
-      },
-      {
         "__id__": 283
+      },
+      {
+        "__id__": 285
+      },
+      {
+        "__id__": 287
       }
     ],
     "_active": true,
@@ -4891,13 +4950,13 @@
     "_name": "Back",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 278
+      "__id__": 282
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 280
+        "__id__": 284
       }
     ],
     "_prefab": null,
@@ -4944,8 +5003,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "98zMs8H6JEA7V+mixTVdLW"
   },
   {
@@ -4953,7 +5012,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 279
+      "__id__": 283
     },
     "_enabled": true,
     "_materials": [
@@ -4985,13 +5044,13 @@
     "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 278
+      "__id__": 282
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 282
+        "__id__": 286
       }
     ],
     "_prefab": null,
@@ -5038,8 +5097,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "fft+NNey5Ig6gpnrasZTfn"
   },
   {
@@ -5047,7 +5106,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 281
+      "__id__": 285
     },
     "_enabled": true,
     "_materials": [
@@ -5079,13 +5138,13 @@
     "_name": "Value",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 278
+      "__id__": 282
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 284
+        "__id__": 288
       }
     ],
     "_prefab": null,
@@ -5132,8 +5191,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "5cQFs78btDZ62Ujkc46yOS"
   },
   {
@@ -5141,7 +5200,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 283
+      "__id__": 287
     },
     "_enabled": true,
     "_materials": [
@@ -5180,19 +5239,19 @@
     },
     "_children": [
       {
-        "__id__": 286
-      },
-      {
-        "__id__": 288
-      },
-      {
         "__id__": 290
+      },
+      {
+        "__id__": 292
+      },
+      {
+        "__id__": 294
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 292
+        "__id__": 296
       }
     ],
     "_prefab": null,
@@ -5248,13 +5307,13 @@
     "_name": "Back",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 285
+      "__id__": 289
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 287
+        "__id__": 291
       }
     ],
     "_prefab": null,
@@ -5301,8 +5360,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "e35lkKx8pK6Jw308Sc0VFR"
   },
   {
@@ -5310,7 +5369,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 286
+      "__id__": 290
     },
     "_enabled": true,
     "_materials": [
@@ -5342,13 +5401,13 @@
     "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 285
+      "__id__": 289
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 289
+        "__id__": 293
       }
     ],
     "_prefab": null,
@@ -5395,8 +5454,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "131DowT1lKbbi2GEcuEvMB"
   },
   {
@@ -5404,7 +5463,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 288
+      "__id__": 292
     },
     "_enabled": true,
     "_materials": [
@@ -5436,13 +5495,13 @@
     "_name": "Value",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 285
+      "__id__": 289
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 291
+        "__id__": 295
       }
     ],
     "_prefab": null,
@@ -5489,8 +5548,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 1,
+    "groupIndex": 1,
     "_id": "00Q7D2J39PApqy9AyayICK"
   },
   {
@@ -5498,7 +5557,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 290
+      "__id__": 294
     },
     "_enabled": true,
     "_materials": [
@@ -5533,7 +5592,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 285
+      "__id__": 289
     },
     "_enabled": true,
     "transformReference": null,
@@ -5542,19 +5601,19 @@
     "limitSideRatio": 1.35,
     "commonTransform": null,
     "commonTransformBelowSideRatio": {
-      "__id__": 293
+      "__id__": 297
     },
     "landscapeTransform": {
-      "__id__": 299
+      "__id__": 303
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 306
+      "__id__": 310
     },
     "portraitTransform": {
-      "__id__": 312
+      "__id__": 316
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 319
+      "__id__": 323
     },
     "_id": "f5qboF6KpE0qzfilJnO+GN"
   },
@@ -5562,19 +5621,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 294
+      "__id__": 298
     },
     "scaleComponent": {
-      "__id__": 295
+      "__id__": 299
     },
     "rotationComponent": {
-      "__id__": 296
+      "__id__": 300
     },
     "anchorComponent": {
-      "__id__": 297
+      "__id__": 301
     },
     "sizeComponent": {
-      "__id__": 298
+      "__id__": 302
     }
   },
   {
@@ -5606,26 +5665,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 300
-    },
-    "scaleComponent": {
-      "__id__": 302
-    },
-    "rotationComponent": {
-      "__id__": 303
-    },
-    "anchorComponent": {
       "__id__": 304
     },
+    "scaleComponent": {
+      "__id__": 306
+    },
+    "rotationComponent": {
+      "__id__": 307
+    },
+    "anchorComponent": {
+      "__id__": 308
+    },
     "sizeComponent": {
-      "__id__": 305
+      "__id__": 309
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 301
+      "__id__": 305
     }
   },
   {
@@ -5667,19 +5726,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 307
+      "__id__": 311
     },
     "scaleComponent": {
-      "__id__": 308
+      "__id__": 312
     },
     "rotationComponent": {
-      "__id__": 309
+      "__id__": 313
     },
     "anchorComponent": {
-      "__id__": 310
+      "__id__": 314
     },
     "sizeComponent": {
-      "__id__": 311
+      "__id__": 315
     }
   },
   {
@@ -5711,26 +5770,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 313
-    },
-    "scaleComponent": {
-      "__id__": 315
-    },
-    "rotationComponent": {
-      "__id__": 316
-    },
-    "anchorComponent": {
       "__id__": 317
     },
+    "scaleComponent": {
+      "__id__": 319
+    },
+    "rotationComponent": {
+      "__id__": 320
+    },
+    "anchorComponent": {
+      "__id__": 321
+    },
     "sizeComponent": {
-      "__id__": 318
+      "__id__": 322
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 314
+      "__id__": 318
     }
   },
   {
@@ -5772,19 +5831,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 320
+      "__id__": 324
     },
     "scaleComponent": {
-      "__id__": 321
+      "__id__": 325
     },
     "rotationComponent": {
-      "__id__": 322
+      "__id__": 326
     },
     "anchorComponent": {
-      "__id__": 323
+      "__id__": 327
     },
     "sizeComponent": {
-      "__id__": 324
+      "__id__": 328
     }
   },
   {
@@ -5813,6 +5872,17 @@
     "configuration": null
   },
   {
+    "__type__": "4fba9m+6cZPdLyhJq6sGsLb",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 236
+    },
+    "_enabled": true,
+    "boosterConfigs": [],
+    "_id": "66UUbio15MrbkH5OmP7i/V"
+  },
+  {
     "__type__": "e52a9044wFPirYVk7hRJ6Sp",
     "_name": "",
     "_objFlags": 0,
@@ -5826,19 +5896,19 @@
     "limitSideRatio": 1.35,
     "commonTransform": null,
     "commonTransformBelowSideRatio": {
-      "__id__": 326
+      "__id__": 331
     },
     "landscapeTransform": {
-      "__id__": 332
+      "__id__": 337
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 340
+      "__id__": 345
     },
     "portraitTransform": {
-      "__id__": 346
+      "__id__": 351
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 354
+      "__id__": 359
     },
     "_id": "b8Wbfy54RPnYX3C6P64xv+"
   },
@@ -5846,19 +5916,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 327
+      "__id__": 332
     },
     "scaleComponent": {
-      "__id__": 328
+      "__id__": 333
     },
     "rotationComponent": {
-      "__id__": 329
+      "__id__": 334
     },
     "anchorComponent": {
-      "__id__": 330
+      "__id__": 335
     },
     "sizeComponent": {
-      "__id__": 331
+      "__id__": 336
     }
   },
   {
@@ -5890,26 +5960,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 333
-    },
-    "scaleComponent": {
-      "__id__": 335
-    },
-    "rotationComponent": {
-      "__id__": 337
-    },
-    "anchorComponent": {
       "__id__": 338
     },
+    "scaleComponent": {
+      "__id__": 340
+    },
+    "rotationComponent": {
+      "__id__": 342
+    },
+    "anchorComponent": {
+      "__id__": 343
+    },
     "sizeComponent": {
-      "__id__": 339
+      "__id__": 344
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 334
+      "__id__": 339
     }
   },
   {
@@ -5931,7 +6001,7 @@
     "__type__": "ScaleComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 336
+      "__id__": 341
     }
   },
   {
@@ -5969,19 +6039,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 341
+      "__id__": 346
     },
     "scaleComponent": {
-      "__id__": 342
+      "__id__": 347
     },
     "rotationComponent": {
-      "__id__": 343
+      "__id__": 348
     },
     "anchorComponent": {
-      "__id__": 344
+      "__id__": 349
     },
     "sizeComponent": {
-      "__id__": 345
+      "__id__": 350
     }
   },
   {
@@ -6013,26 +6083,26 @@
     "__type__": "TransformController",
     "changeValueType": 1,
     "positionComponent": {
-      "__id__": 347
-    },
-    "scaleComponent": {
-      "__id__": 349
-    },
-    "rotationComponent": {
-      "__id__": 351
-    },
-    "anchorComponent": {
       "__id__": 352
     },
+    "scaleComponent": {
+      "__id__": 354
+    },
+    "rotationComponent": {
+      "__id__": 356
+    },
+    "anchorComponent": {
+      "__id__": 357
+    },
     "sizeComponent": {
-      "__id__": 353
+      "__id__": 358
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 348
+      "__id__": 353
     }
   },
   {
@@ -6054,7 +6124,7 @@
     "__type__": "ScaleComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 350
+      "__id__": 355
     }
   },
   {
@@ -6092,19 +6162,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 355
+      "__id__": 360
     },
     "scaleComponent": {
-      "__id__": 356
+      "__id__": 361
     },
     "rotationComponent": {
-      "__id__": 357
+      "__id__": 362
     },
     "anchorComponent": {
-      "__id__": 358
+      "__id__": 363
     },
     "sizeComponent": {
-      "__id__": 359
+      "__id__": 364
     }
   },
   {
@@ -6141,16 +6211,16 @@
     },
     "_children": [
       {
-        "__id__": 361
+        "__id__": 366
       },
       {
-        "__id__": 399
+        "__id__": 404
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 453
+        "__id__": 458
       }
     ],
     "_prefab": null,
@@ -6206,17 +6276,17 @@
     "_name": "PauseButton",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 360
+      "__id__": 365
     },
     "_children": [
       {
-        "__id__": 362
+        "__id__": 367
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 364
+        "__id__": 369
       }
     ],
     "_prefab": null,
@@ -6272,13 +6342,13 @@
     "_name": "Renderer",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 361
+      "__id__": 366
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 363
+        "__id__": 368
       }
     ],
     "_prefab": null,
@@ -6334,7 +6404,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 362
+      "__id__": 367
     },
     "_enabled": true,
     "_materials": [
@@ -6366,7 +6436,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 361
+      "__id__": 366
     },
     "_enabled": true,
     "transformReference": null,
@@ -6375,19 +6445,19 @@
     "limitSideRatio": 1.35,
     "commonTransform": null,
     "commonTransformBelowSideRatio": {
-      "__id__": 365
+      "__id__": 370
     },
     "landscapeTransform": {
-      "__id__": 371
+      "__id__": 376
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 379
+      "__id__": 384
     },
     "portraitTransform": {
-      "__id__": 385
+      "__id__": 390
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 393
+      "__id__": 398
     },
     "_id": "84A/6/NixPxoNsU1Y6CQm7"
   },
@@ -6395,19 +6465,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 366
+      "__id__": 371
     },
     "scaleComponent": {
-      "__id__": 367
+      "__id__": 372
     },
     "rotationComponent": {
-      "__id__": 368
+      "__id__": 373
     },
     "anchorComponent": {
-      "__id__": 369
+      "__id__": 374
     },
     "sizeComponent": {
-      "__id__": 370
+      "__id__": 375
     }
   },
   {
@@ -6439,26 +6509,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 372
-    },
-    "scaleComponent": {
-      "__id__": 374
-    },
-    "rotationComponent": {
-      "__id__": 376
-    },
-    "anchorComponent": {
       "__id__": 377
     },
+    "scaleComponent": {
+      "__id__": 379
+    },
+    "rotationComponent": {
+      "__id__": 381
+    },
+    "anchorComponent": {
+      "__id__": 382
+    },
     "sizeComponent": {
-      "__id__": 378
+      "__id__": 383
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 373
+      "__id__": 378
     }
   },
   {
@@ -6480,7 +6550,7 @@
     "__type__": "ScaleComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 375
+      "__id__": 380
     }
   },
   {
@@ -6518,19 +6588,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 380
+      "__id__": 385
     },
     "scaleComponent": {
-      "__id__": 381
+      "__id__": 386
     },
     "rotationComponent": {
-      "__id__": 382
+      "__id__": 387
     },
     "anchorComponent": {
-      "__id__": 383
+      "__id__": 388
     },
     "sizeComponent": {
-      "__id__": 384
+      "__id__": 389
     }
   },
   {
@@ -6562,26 +6632,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 386
-    },
-    "scaleComponent": {
-      "__id__": 388
-    },
-    "rotationComponent": {
-      "__id__": 390
-    },
-    "anchorComponent": {
       "__id__": 391
     },
+    "scaleComponent": {
+      "__id__": 393
+    },
+    "rotationComponent": {
+      "__id__": 395
+    },
+    "anchorComponent": {
+      "__id__": 396
+    },
     "sizeComponent": {
-      "__id__": 392
+      "__id__": 397
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 387
+      "__id__": 392
     }
   },
   {
@@ -6603,7 +6673,7 @@
     "__type__": "ScaleComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 389
+      "__id__": 394
     }
   },
   {
@@ -6641,19 +6711,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 394
+      "__id__": 399
     },
     "scaleComponent": {
-      "__id__": 395
+      "__id__": 400
     },
     "rotationComponent": {
-      "__id__": 396
+      "__id__": 401
     },
     "anchorComponent": {
-      "__id__": 397
+      "__id__": 402
     },
     "sizeComponent": {
-      "__id__": 398
+      "__id__": 403
     }
   },
   {
@@ -6686,29 +6756,29 @@
     "_name": "ModalPause",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 360
+      "__id__": 365
     },
     "_children": [
       {
-        "__id__": 400
+        "__id__": 405
       },
       {
-        "__id__": 402
+        "__id__": 407
       },
       {
-        "__id__": 404
+        "__id__": 409
       },
       {
-        "__id__": 406
+        "__id__": 411
       },
       {
-        "__id__": 410
+        "__id__": 415
       }
     ],
     "_active": false,
     "_components": [
       {
-        "__id__": 414
+        "__id__": 419
       }
     ],
     "_prefab": null,
@@ -6764,13 +6834,13 @@
     "_name": "OverLay",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 399
+      "__id__": 404
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 401
+        "__id__": 406
       }
     ],
     "_prefab": null,
@@ -6826,7 +6896,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 400
+      "__id__": 405
     },
     "_enabled": true,
     "_materials": [
@@ -6858,13 +6928,13 @@
     "_name": "Back",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 399
+      "__id__": 404
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 403
+        "__id__": 408
       }
     ],
     "_prefab": null,
@@ -6920,7 +6990,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 402
+      "__id__": 407
     },
     "_enabled": true,
     "_materials": [
@@ -6952,13 +7022,13 @@
     "_name": "Title",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 399
+      "__id__": 404
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 405
+        "__id__": 410
       }
     ],
     "_prefab": null,
@@ -7014,7 +7084,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 404
+      "__id__": 409
     },
     "_enabled": true,
     "_materials": [
@@ -7049,17 +7119,17 @@
     "_name": "ResumeButton",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 399
+      "__id__": 404
     },
     "_children": [
       {
-        "__id__": 407
+        "__id__": 412
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 409
+        "__id__": 414
       }
     ],
     "_prefab": null,
@@ -7115,13 +7185,13 @@
     "_name": "Text",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 406
+      "__id__": 411
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 408
+        "__id__": 413
       }
     ],
     "_prefab": null,
@@ -7177,7 +7247,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 407
+      "__id__": 412
     },
     "_enabled": true,
     "_materials": [
@@ -7212,7 +7282,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 406
+      "__id__": 411
     },
     "_enabled": true,
     "_materials": [
@@ -7244,17 +7314,17 @@
     "_name": "HomeButton",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 399
+      "__id__": 404
     },
     "_children": [
       {
-        "__id__": 411
+        "__id__": 416
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 413
+        "__id__": 418
       }
     ],
     "_prefab": null,
@@ -7310,13 +7380,13 @@
     "_name": "Text",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 410
+      "__id__": 415
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 412
+        "__id__": 417
       }
     ],
     "_prefab": null,
@@ -7372,7 +7442,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 411
+      "__id__": 416
     },
     "_enabled": true,
     "_materials": [
@@ -7407,7 +7477,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 410
+      "__id__": 415
     },
     "_enabled": true,
     "_materials": [
@@ -7439,7 +7509,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 399
+      "__id__": 404
     },
     "_enabled": true,
     "transformReference": null,
@@ -7447,22 +7517,22 @@
     "_isDependingOnSideRatio": false,
     "limitSideRatio": 1.35,
     "commonTransform": {
-      "__id__": 415
+      "__id__": 420
     },
     "commonTransformBelowSideRatio": {
-      "__id__": 423
+      "__id__": 428
     },
     "landscapeTransform": {
-      "__id__": 429
+      "__id__": 434
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 435
+      "__id__": 440
     },
     "portraitTransform": {
-      "__id__": 441
+      "__id__": 446
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 447
+      "__id__": 452
     },
     "_id": "69uS94L1RGR4CxMYf+9M0R"
   },
@@ -7470,26 +7540,26 @@
     "__type__": "TransformController",
     "changeValueType": 1,
     "positionComponent": {
-      "__id__": 416
-    },
-    "scaleComponent": {
-      "__id__": 418
-    },
-    "rotationComponent": {
-      "__id__": 420
-    },
-    "anchorComponent": {
       "__id__": 421
     },
+    "scaleComponent": {
+      "__id__": 423
+    },
+    "rotationComponent": {
+      "__id__": 425
+    },
+    "anchorComponent": {
+      "__id__": 426
+    },
     "sizeComponent": {
-      "__id__": 422
+      "__id__": 427
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 417
+      "__id__": 422
     }
   },
   {
@@ -7511,7 +7581,7 @@
     "__type__": "ScaleComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 419
+      "__id__": 424
     }
   },
   {
@@ -7549,63 +7619,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 424
+      "__id__": 429
     },
     "scaleComponent": {
-      "__id__": 425
-    },
-    "rotationComponent": {
-      "__id__": 426
-    },
-    "anchorComponent": {
-      "__id__": 427
-    },
-    "sizeComponent": {
-      "__id__": 428
-    }
-  },
-  {
-    "__type__": "PositionComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "ScaleComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "RotationComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "AnchorComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "SizeComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "TransformController",
-    "changeValueType": 7,
-    "positionComponent": {
       "__id__": 430
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 431
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 432
     },
-    "anchorComponent": {
-      "__id__": 433
-    },
     "sizeComponent": {
-      "__id__": 434
+      "__id__": 433
     }
   },
   {
@@ -7637,19 +7663,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
+      "__id__": 435
+    },
+    "scaleComponent": {
       "__id__": 436
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 437
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 438
     },
-    "anchorComponent": {
-      "__id__": 439
-    },
     "sizeComponent": {
-      "__id__": 440
+      "__id__": 439
     }
   },
   {
@@ -7681,19 +7707,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
+      "__id__": 441
+    },
+    "scaleComponent": {
       "__id__": 442
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 443
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 444
     },
-    "anchorComponent": {
-      "__id__": 445
-    },
     "sizeComponent": {
-      "__id__": 446
+      "__id__": 445
     }
   },
   {
@@ -7725,19 +7751,63 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 448
+      "__id__": 447
     },
     "scaleComponent": {
-      "__id__": 449
+      "__id__": 448
     },
     "rotationComponent": {
-      "__id__": 450
+      "__id__": 449
     },
     "anchorComponent": {
-      "__id__": 451
+      "__id__": 450
     },
     "sizeComponent": {
-      "__id__": 452
+      "__id__": 451
+    }
+  },
+  {
+    "__type__": "PositionComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "ScaleComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "RotationComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "AnchorComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "SizeComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "TransformController",
+    "changeValueType": 7,
+    "positionComponent": {
+      "__id__": 453
+    },
+    "scaleComponent": {
+      "__id__": 454
+    },
+    "rotationComponent": {
+      "__id__": 455
+    },
+    "anchorComponent": {
+      "__id__": 456
+    },
+    "sizeComponent": {
+      "__id__": 457
     }
   },
   {
@@ -7770,7 +7840,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 360
+      "__id__": 365
     },
     "_enabled": true,
     "transformReference": null,
@@ -7778,22 +7848,22 @@
     "_isDependingOnSideRatio": false,
     "limitSideRatio": 1.35,
     "commonTransform": {
-      "__id__": 454
+      "__id__": 459
     },
     "commonTransformBelowSideRatio": {
-      "__id__": 461
+      "__id__": 466
     },
     "landscapeTransform": {
-      "__id__": 467
+      "__id__": 472
     },
     "landscapeTransformBelowSideRatio": {
-      "__id__": 473
+      "__id__": 478
     },
     "portraitTransform": {
-      "__id__": 479
+      "__id__": 484
     },
     "portraitTransformBelowSideRatio": {
-      "__id__": 485
+      "__id__": 490
     },
     "_id": "aePP0u8c5N0I8loMkiyDPz"
   },
@@ -7801,26 +7871,26 @@
     "__type__": "TransformController",
     "changeValueType": 0,
     "positionComponent": {
-      "__id__": 455
+      "__id__": 460
     },
     "scaleComponent": {
-      "__id__": 457
+      "__id__": 462
     },
     "rotationComponent": {
-      "__id__": 458
+      "__id__": 463
     },
     "anchorComponent": {
-      "__id__": 459
+      "__id__": 464
     },
     "sizeComponent": {
-      "__id__": 460
+      "__id__": 465
     }
   },
   {
     "__type__": "PositionComponent",
     "_isActive": true,
     "configuration": {
-      "__id__": 456
+      "__id__": 461
     }
   },
   {
@@ -7862,63 +7932,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 462
+      "__id__": 467
     },
     "scaleComponent": {
-      "__id__": 463
-    },
-    "rotationComponent": {
-      "__id__": 464
-    },
-    "anchorComponent": {
-      "__id__": 465
-    },
-    "sizeComponent": {
-      "__id__": 466
-    }
-  },
-  {
-    "__type__": "PositionComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "ScaleComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "RotationComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "AnchorComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "SizeComponent",
-    "_isActive": false,
-    "configuration": null
-  },
-  {
-    "__type__": "TransformController",
-    "changeValueType": 7,
-    "positionComponent": {
       "__id__": 468
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 469
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 470
     },
-    "anchorComponent": {
-      "__id__": 471
-    },
     "sizeComponent": {
-      "__id__": 472
+      "__id__": 471
     }
   },
   {
@@ -7950,19 +7976,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
+      "__id__": 473
+    },
+    "scaleComponent": {
       "__id__": 474
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 475
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 476
     },
-    "anchorComponent": {
-      "__id__": 477
-    },
     "sizeComponent": {
-      "__id__": 478
+      "__id__": 477
     }
   },
   {
@@ -7994,19 +8020,19 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
+      "__id__": 479
+    },
+    "scaleComponent": {
       "__id__": 480
     },
-    "scaleComponent": {
+    "rotationComponent": {
       "__id__": 481
     },
-    "rotationComponent": {
+    "anchorComponent": {
       "__id__": 482
     },
-    "anchorComponent": {
-      "__id__": 483
-    },
     "sizeComponent": {
-      "__id__": 484
+      "__id__": 483
     }
   },
   {
@@ -8038,19 +8064,63 @@
     "__type__": "TransformController",
     "changeValueType": 7,
     "positionComponent": {
-      "__id__": 486
+      "__id__": 485
     },
     "scaleComponent": {
-      "__id__": 487
+      "__id__": 486
     },
     "rotationComponent": {
-      "__id__": 488
+      "__id__": 487
     },
     "anchorComponent": {
-      "__id__": 489
+      "__id__": 488
     },
     "sizeComponent": {
-      "__id__": 490
+      "__id__": 489
+    }
+  },
+  {
+    "__type__": "PositionComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "ScaleComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "RotationComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "AnchorComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "SizeComponent",
+    "_isActive": false,
+    "configuration": null
+  },
+  {
+    "__type__": "TransformController",
+    "changeValueType": 7,
+    "positionComponent": {
+      "__id__": 491
+    },
+    "scaleComponent": {
+      "__id__": 492
+    },
+    "rotationComponent": {
+      "__id__": 493
+    },
+    "anchorComponent": {
+      "__id__": 494
+    },
+    "sizeComponent": {
+      "__id__": 495
     }
   },
   {
