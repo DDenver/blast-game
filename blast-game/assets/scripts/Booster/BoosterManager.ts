@@ -3,6 +3,7 @@ import { BoosterConfig } from './BoosterConfig';
 import { BoosterTypes } from './BoosterTypes';
 import IBooster from './Interface/IBooster';
 import IBoosterManager from './Interface/IBoosterManager';
+import IBoosterPayload from './Interface/IBoosterPayload';
 
 const { ccclass, property } = cc._decorator;
 
@@ -11,9 +12,9 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
     @property(Booster) boosters: IBooster[] = [];
     @property(BoosterConfig) boosterConfigs: BoosterConfig[] = [];
 
-    private _activeBoosterType: BoosterTypes = BoosterTypes.None;
-    get activeBoosterType(): BoosterTypes {
-        return this._activeBoosterType;
+    private _activeBoosterPayload: IBoosterPayload = null;
+    get activeBoosterPayload(): IBoosterPayload {
+        return this._activeBoosterPayload;
     }
 
     private activeBooster: IBooster = null;
@@ -38,13 +39,13 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
     }
 
     public activateBooster(booster: IBooster): void {
-        this._activeBoosterType = booster.config.type;
+        this._activeBoosterPayload = this.getBoosterPayload(booster.config.type);
         this.activeBooster = booster;
         this.toggleEnableBoosters(false);
     }
 
     public useActiveBooster(): void {
-        this._activeBoosterType = null;
+        this._activeBoosterPayload = null;
         this.toggleEnableBoosters(true);
         this.activeBooster.use();
     }
@@ -57,5 +58,24 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
                 booster.disable();
             }
         })
+    }
+
+    private getBoosterPayload(type: BoosterTypes): IBoosterPayload {
+        const payload: IBoosterPayload = {
+            type
+        }
+
+        switch (type) {
+            case BoosterTypes.Boomb:
+                payload.radius = 4;
+                break;
+            case BoosterTypes.MegaBoomb:
+                payload.radius = -1;
+                break;
+            default:
+                break;
+        }
+
+        return payload;
     }
 }

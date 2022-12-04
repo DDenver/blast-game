@@ -1,3 +1,4 @@
+import { BoosterTypes } from '../../Booster/BoosterTypes';
 import Tile from '../../Tile/Tile';
 import { LineDestroy } from '../../Tile/TileConstants';
 import FieldUtils from '../FieldUtils';
@@ -11,7 +12,8 @@ export default class FieldStateLineDestroy extends FieldState {
         let line;
         const posOnMap = FieldUtils.instance.getPositionOnMap(this.field.focusTile.getPosition());
 
-        switch (this.field.focusTile.config.typeDestroy as LineDestroy) {
+
+        switch (this.getDestroyType()) {
             case LineDestroy.Horizontal:
                 line = this.field.fieldCreator.getRow(posOnMap.y);
                 await this.removeLine(line, posOnMap.x);
@@ -24,6 +26,8 @@ export default class FieldStateLineDestroy extends FieldState {
 
         this.field.focusTile = null;
 
+        if (this.field.boosterManager.activeBoosterPayload) this.field.boosterManager.useActiveBooster();
+
         await this.field.waitTimer(0.25);// wait remove tiles
         this.field.setState(new FieldStateFallTiles(this.field));
     }
@@ -32,7 +36,7 @@ export default class FieldStateLineDestroy extends FieldState {
         let iteration = 0;
         let iterationTime = 0.01;
         iteration = Math.round(Math.max(pos, line.length - pos)) + 1;
-        
+
         for (let i = 0; i < iteration; i++) {
             if (i === 0) {
                 this.field.fieldCreator.removeTile(line[pos]);
@@ -45,5 +49,21 @@ export default class FieldStateLineDestroy extends FieldState {
             }
             await this.field.waitTimer(iterationTime * i);// wait remove tiles
         }
+    }
+
+    private getDestroyType(): LineDestroy {
+        if (
+            (this.field.boosterManager.activeBoosterPayload
+                && this.field.boosterManager.activeBoosterPayload.type === BoosterTypes.VerticalLineDestroy)
+            || (this.field.focusTile.config.typeDestroy as LineDestroy) === LineDestroy.Vertical
+        ) return LineDestroy.Vertical;
+
+        if (
+            (this.field.boosterManager.activeBoosterPayload
+                && this.field.boosterManager.activeBoosterPayload.type === BoosterTypes.HorizontalLineDestroy)
+            || (this.field.focusTile.config.typeDestroy as LineDestroy) === LineDestroy.Horizontal
+        ) return LineDestroy.Horizontal;
+
+        return LineDestroy.Horizontal;
     }
 }

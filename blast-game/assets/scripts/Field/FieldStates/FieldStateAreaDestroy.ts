@@ -1,3 +1,4 @@
+import { BoosterTypes } from '../../Booster/BoosterTypes';
 import Tile from '../../Tile/Tile';
 import TileAreaDestroy from '../../Tile/TileAreaDestroy';
 import { AreaDestroy, LineDestroy } from '../../Tile/TileConstants';
@@ -9,9 +10,9 @@ export default class FieldStateAreaDestroy extends FieldState {
     tapToTile(tile: Tile): void { }
 
     async enterToState(): Promise<void> {
-        switch (this.field.focusTile.config.typeDestroy as AreaDestroy) {
+        switch (this.getDestroyType()) {
             case AreaDestroy.Default:
-                await this.removeArea((this.field.focusTile as TileAreaDestroy).config.radius);
+                await this.removeArea(this.getRadius());
                 break;
             case AreaDestroy.All:
                 this.field.fieldCreator.removeTiles(this.field.fieldCreator.getAllTiles());
@@ -19,6 +20,8 @@ export default class FieldStateAreaDestroy extends FieldState {
         }
 
         this.field.focusTile = null;
+
+        if (this.field.boosterManager.activeBoosterPayload) this.field.boosterManager.useActiveBooster();
 
         await this.field.waitTimer(0.25);// wait remove tiles
         this.field.setState(new FieldStateFallTiles(this.field));
@@ -52,5 +55,27 @@ export default class FieldStateAreaDestroy extends FieldState {
         neighbors.forEach(n => n.needMatch = true);
 
         return neighbors;
+    }
+
+    private getDestroyType(): AreaDestroy {
+        if (
+            (this.field.boosterManager.activeBoosterPayload
+                && this.field.boosterManager.activeBoosterPayload.type === BoosterTypes.Boomb)
+            || (this.field.focusTile.config.typeDestroy as AreaDestroy) === AreaDestroy.Default
+        ) return AreaDestroy.Default;
+
+        if (
+            (this.field.boosterManager.activeBoosterPayload
+                && this.field.boosterManager.activeBoosterPayload.type === BoosterTypes.MegaBoomb)
+            || (this.field.focusTile.config.typeDestroy as AreaDestroy) === AreaDestroy.All
+        ) return AreaDestroy.All;
+
+        return AreaDestroy.Default;
+    }
+
+    private getRadius(): number {
+        return this.field.boosterManager.activeBoosterPayload ?
+            this.field.boosterManager.activeBoosterPayload.radius
+            : (this.field.focusTile as TileAreaDestroy).config.radius;
     }
 }
