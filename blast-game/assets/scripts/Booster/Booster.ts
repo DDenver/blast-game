@@ -10,16 +10,16 @@ export default class Booster extends cc.Component implements IBooster {
     counter: number;
 
     init(config: BoosterConfig): void {
-        throw new Error('Method not implemented.');
+        
     }
     enable(): void {
-        throw new Error('Method not implemented.');
+        
     }
     disable(): void {
-        throw new Error('Method not implemented.');
+        
     }
     onTap(): void {
-        throw new Error('Method not implemented.');
+        
     }
 
 }
