@@ -18,6 +18,11 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
 
     private activeBooster: IBooster = null;
 
+    onLoad() {
+        this.init(); // todo config get from LevelConfigs
+        this.enable();
+    }
+
     public init(): void { // todo config get from LevelConfigs
         this.boosters.forEach((booster, i) => {
             booster.init(this, this.boosterConfigs[i]);
