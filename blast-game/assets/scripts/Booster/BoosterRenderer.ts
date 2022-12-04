@@ -25,18 +25,18 @@ export default class BoosterRenderer extends cc.Component implements IBoosterRen
     }
 
     public activate(): void {
-        this.playScaleTween(1.2);
+        this.playScaleTween(1.3, 127);
     }
 
     public deactivate(): void {
-        this.playScaleTween(1);
+        this.playScaleTween(1, 255);
     }
 
-    private playScaleTween(scale: number): void {
+    private playScaleTween(scale: number, opacity: number): void {
         if (this.tween) this.tween.stop();
 
         this.tween = cc.tween<cc.Node>(this.icon.node).to(this.tweenDuration,
-            { scale },
+            { scale, opacity },
             { easing: cc.easing[EasingType[this.easing]] }
         ).start();
     }
