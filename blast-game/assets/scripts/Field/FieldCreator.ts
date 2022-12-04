@@ -1,8 +1,6 @@
 import EasingType from '../Enums/EasingType';
 import Tile from '../Tile/Tile';
-import TileAreaDestroy from '../Tile/TileAreaDestroy';
 import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
-import TileLineDestroy from '../Tile/TileLineDestroy';
 import Field from './Field';
 import FieldUtils from './FieldUtils';
 
@@ -93,10 +91,6 @@ export default class FieldCreator {
     }
 
     public async updateMap(): Promise<void> {
-        const fallSpeed = 0.3; // todo add to fieldConfig
-        const easing = EasingType.bounceOut; // todo add to fieldConfig
-        const fallTimeLimit = 0.6; // todo add to fieldConfig
-
         let maxFallTime = 0;
 
         for (let x = 0; x < FieldUtils.instance.fieldSize.width; x++) {
@@ -111,9 +105,9 @@ export default class FieldCreator {
                     const newMapPos = y + counter;
                     this.map[y][x] = null;
 
-                    const fallTime = Math.min(counter * fallSpeed, fallTimeLimit);
+                    const fallTime = Math.min(counter * this.field.fallSpeed, this.field.fallTimeLimit);
                     maxFallTime = Math.max(fallTime, maxFallTime);
-                    this.fallTile(tile, new cc.Vec2(x, newMapPos), fallTime, easing);
+                    this.fallTile(tile, new cc.Vec2(x, newMapPos), fallTime, this.field.easingFall);
                 };
             }
 
@@ -123,9 +117,9 @@ export default class FieldCreator {
                 newTile.setPosition(tileWordPos);
                 newTile.show(false);
 
-                const fallTime = Math.min(counter * fallSpeed, fallTimeLimit);
+                const fallTime = Math.min(counter * this.field.fallSpeed, this.field.fallTimeLimit);
                 maxFallTime = Math.max(fallTime, maxFallTime);
-                this.fallTile(newTile, new cc.Vec2(x, counter - (i)), fallTime, easing);
+                this.fallTile(newTile, new cc.Vec2(x, counter - (i)), fallTime, this.field.easingFall);
             }
         }
 

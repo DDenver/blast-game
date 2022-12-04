@@ -1,8 +1,7 @@
 import { BoosterTypes } from '../../Booster/BoosterTypes';
 import Tile from '../../Tile/Tile';
 import TileAreaDestroy from '../../Tile/TileAreaDestroy';
-import { AreaDestroy, LineDestroy } from '../../Tile/TileConstants';
-import FieldUtils from '../FieldUtils';
+import { AreaDestroy } from '../../Tile/TileConstants';
 import FieldState from './FieldState';
 import FieldStateFallTiles from './FieldStateFallTiles';
 

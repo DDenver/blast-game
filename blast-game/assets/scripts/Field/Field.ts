@@ -1,5 +1,6 @@
 import BoosterManager from '../Booster/BoosterManager';
 import IBoosterManager from '../Booster/Interface/IBoosterManager';
+import EasingType from '../Enums/EasingType';
 import Tile from '../Tile/Tile';
 import TileColorDestroy from '../Tile/TileColorDestroy';
 import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
@@ -18,6 +19,11 @@ export default class Field extends cc.Component {
     @property(BoosterManager) boosterManager: IBoosterManager = null;
     @property(cc.Node) renderer: cc.Node = null;
 
+    @property(cc.Float) fallSpeed: number = 0.3;
+    @property({ type: cc.Enum(EasingType) }) easingFall = EasingType.bounceOut;
+    @property(cc.Float) fallTimeLimit: number = 0.6;
+    @property(cc.Integer) matchingCountForUpgrade: number = 4;
+
     public fieldInput: FieldInput;
     public fieldCreator: FieldCreator;
 
@@ -25,15 +31,12 @@ export default class Field extends cc.Component {
 
     private state: FieldState;
 
-    onLoad() {
-        this.init();
-    }
+    // onLoad() {
+    //     this.init();
+    // }
 
-    start() {
-    }
-
-    public init(): void {
-        new FieldUtils(this);
+    public init(fieldSize: cc.Size): void {
+        new FieldUtils(this, fieldSize);
         this.fieldCreator = new FieldCreator(this);
         this.fieldInput = new FieldInput(this);
 
@@ -99,10 +102,10 @@ export default class Field extends cc.Component {
     public checkToMix(): boolean {
         const allTiles = this.fieldCreator.getAllTiles();
 
-            for (let i = 0; i < allTiles.length; i++) {
+        for (let i = 0; i < allTiles.length; i++) {
             const tile = allTiles[i];
             const neighbors = this.fieldCreator.getNeighbors(tile);
-                const hasSameColor = neighbors.some(n => this.checkSameColor(tile, n) || !(n instanceof TileColorDestroy));
+            const hasSameColor = neighbors.some(n => this.checkSameColor(tile, n) || !(n instanceof TileColorDestroy));
 
             if (hasSameColor) return false;
         }

@@ -1,10 +1,10 @@
 import Events from '../Enums/Events';
-import Field from '../Field/Field';
+import { LevelTileConfig } from '../Level/LevelTileConfig';
 import Utilities from '../Plugins/Utilities';
 import Tile from './Tile';
 import TileAreaDestroy, { TileAreaConfig } from './TileAreaDestroy';
 import TileColorDestroy, { TileColorConfig } from './TileColorDestroy';
-import { AreaDestroy, ColorDestroy, LineDestroy } from './TileConstants';
+import { AreaDestroy, ColorDestroy, LineDestroy, TileAbilityTypes } from './TileConstants';
 import TileLineDestroy, { TileLineConfig } from './TileLineDestroy';
 import TilesPool from './TilesPool';
 
@@ -12,7 +12,6 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class TilesCreator extends cc.Component {
-    @property(cc.Component) field: Field = null; // todo get from Level Manager
     @property(cc.Prefab) tileColorPrefab: cc.Prefab = null;
     @property(cc.Prefab) tileLinePrefab: cc.Prefab = null;
     @property(cc.Prefab) tileAreaPrefab: cc.Prefab = null;
@@ -25,16 +24,14 @@ export default class TilesCreator extends cc.Component {
     private tileLinePool: TilesPool<TileLineDestroy>;
     private tileAreaPool: TilesPool<TileAreaDestroy>;
 
-    onLoad() {
-        this.init(); // todo call in LevelManager
-    }
+    public init(parentNode: cc.Node, tilesConig: LevelTileConfig[]): void {
+        this.tileAreaConig.forEach(tac => {
+            tac.radius = tilesConig.find(c => c.typeDestroy === tac.typeDestroy).radius
+        });
 
-    public init(): void {
-        const parent = this.field.renderer // todo change to Field node
-
-        this.tileColorPool = new TilesPool(parent, this.tileColorPrefab, TileColorDestroy.name);
-        this.tileLinePool = new TilesPool(parent, this.tileLinePrefab, TileLineDestroy.name);
-        this.tileAreaPool = new TilesPool(parent, this.tileAreaPrefab, TileAreaDestroy.name);
+        this.tileColorPool = new TilesPool(parentNode, this.tileColorPrefab, TileColorDestroy.name);
+        this.tileLinePool = new TilesPool(parentNode, this.tileLinePrefab, TileLineDestroy.name);
+        this.tileAreaPool = new TilesPool(parentNode, this.tileAreaPrefab, TileAreaDestroy.name);
 
         cc.systemEvent.on(Events.TILE_REMOVED.toString(), this.tileRemove, this);
     }
@@ -69,11 +66,11 @@ export default class TilesCreator extends cc.Component {
         isRandom: boolean,
         type: AreaDestroy = AreaDestroy.Default
     ): TileAreaDestroy {
-        
+
         const tile = this.tileAreaPool.getTile();
         type = isRandom ? AreaDestroy[Utilities.getRandomEnumKey(AreaDestroy)] : type;
         const config = this.tileAreaConig.find(t => t.typeDestroy === type);
-        
+
         tile.init(config);
 
         return tile;

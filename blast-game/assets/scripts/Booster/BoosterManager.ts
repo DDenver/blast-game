@@ -1,3 +1,4 @@
+import { LevelBoosterConfig } from '../Level/LevelBoosterConfig';
 import Booster from './Booster';
 import { BoosterConfig } from './BoosterConfig';
 import { BoosterTypes } from './BoosterTypes';
@@ -10,7 +11,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class BoosterManager extends cc.Component implements IBoosterManager {
     @property(Booster) boosters: IBooster[] = [];
-    @property(BoosterConfig) boosterConfigs: BoosterConfig[] = [];
+    @property(BoosterConfig) boosterIconsConfigs: BoosterConfig[] = [];
 
     private _activeBoosterPayload: IBoosterPayload = null;
     get activeBoosterPayload(): IBoosterPayload {
@@ -19,14 +20,16 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
 
     private activeBooster: IBooster = null;
 
-    onLoad() {
-        this.init(); // todo config get from LevelConfigs
-        this.enable();
-    }
+    public init(configs: LevelBoosterConfig[]): void {
 
-    public init(): void { // todo config get from LevelConfigs
         this.boosters.forEach((booster, i) => {
-            booster.init(this, this.boosterConfigs[i]);
+            const apllyconfig: BoosterConfig = {
+                type: configs[i].type,
+                icon: this.boosterIconsConfigs.find(b => b.type === configs[i].type).icon,
+                startCount: configs[i].startCount,
+                radius: configs[i].radius,
+            }
+            booster.init(this, apllyconfig);
         });
     }
 
@@ -39,7 +42,7 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
     }
 
     public activateBooster(booster: IBooster): void {
-        this._activeBoosterPayload = this.getBoosterPayload(booster.config.type);
+        this._activeBoosterPayload = this.getBoosterPayload(booster);
         this.activeBooster = booster;
         this.toggleEnableBoosters(false);
     }
@@ -60,12 +63,12 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
         })
     }
 
-    private getBoosterPayload(type: BoosterTypes): IBoosterPayload {
+    private getBoosterPayload(booster: IBooster): IBoosterPayload {
         const payload: IBoosterPayload = {
-            type
+            type: booster.config.type,
         }
 
-        switch (type) {
+        switch (booster.config.type) {
             case BoosterTypes.Boomb:
                 payload.radius = 4;
                 break;

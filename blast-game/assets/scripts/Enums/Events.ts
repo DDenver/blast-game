@@ -5,6 +5,7 @@ enum Events {
 
     NEW_GAME,
     RESTART_GAME,
+    START_LEVEL,
     COMPLETE_LEVEL,
     NEXT_LEVEL,
     MAIN_MENU,

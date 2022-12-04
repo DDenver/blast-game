@@ -9,14 +9,12 @@ export default class FieldStateDestroyByColor extends FieldState {
     tapToTile(tile: Tile): void { }
 
     async enterToState(): Promise<void> {
-        const matchingCountForUpgrade = 4; // todo add to LevelConfig
-
         const siblings = this.field.getSiblingsByColor(this.field.focusTile as TileColorDestroy);
 
         if (siblings.length <= (this.field.focusTile as TileColorDestroy).config.matchCount - 1) {
             await this.field.focusTile.cantMatching();
             this.field.focusTile = null;
-        } else if (siblings.length >= matchingCountForUpgrade) {
+        } else if (siblings.length >= this.field.matchingCountForUpgrade) {
             await this.upgradeTile(siblings);
         } else {
             await this.removeTiles(siblings);

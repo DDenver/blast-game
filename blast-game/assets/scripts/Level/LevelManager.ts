@@ -1,28 +1,32 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+import BoosterManager from '../Booster/BoosterManager';
+import IBoosterManager from '../Booster/Interface/IBoosterManager';
+import Events from '../Enums/Events';
+import Field from '../Field/Field';
+import TilesCreator from '../Tile/TilesCreator';
+import { LevelConfig } from './LevelConfig';
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class LevelManager extends cc.Component {
+    @property(BoosterManager) boosterManager: IBoosterManager = null;
+    @property(Field) field: Field = null;
+    @property(TilesCreator) tilesCreator: TilesCreator = null;
+    @property(cc.Size) fieldSize: cc.Size = cc.Size.ZERO;
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(LevelConfig) config: LevelConfig = null;
 
-    @property
-    text: string = 'hello';
+    private levelNumber: number = 0;
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start () {
-
+    onLoad() {
+        cc.systemEvent.on(Events.START_LEVEL.toString(), this.onStartLevel, this);
     }
 
-    // update (dt) {}
+    private onStartLevel(config: LevelConfig): void {
+        this.boosterManager.init(this.config.boosters);
+        this.boosterManager.enable();
+
+        this.tilesCreator.init(this.field.renderer, this.config.tiles);
+        this.field.init(this.fieldSize);
+    }
 }

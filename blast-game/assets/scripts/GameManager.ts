@@ -18,7 +18,7 @@ export default class GameManager extends cc.Component {
     start(): void {
         this.windowResized();
 
-        this.scheduleOnce(()=>{
+        this.scheduleOnce(() => {
             this.newGame();
         }, 0.5);
     }
@@ -41,18 +41,20 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.emit(Events.WINDOW_RESIZED.toString(), this.settings);
     }
 
-    private loadScene(name: SceneNames = SceneNames.MAIN, callback?: () => {}): void {
+    private loadScene(name: SceneNames = SceneNames.MAIN, callback?: () => void): void {
         cc.director.loadScene(name, () => {
             if (callback) callback();
             this.windowResized();
-            
+
             console.log(`Scene ${name} Loaded...`);
         });
     }
 
 
     private newGame() {
-        this.loadScene(SceneNames.GAME);
+        this.loadScene(SceneNames.GAME, () => {
+            cc.systemEvent.emit(Events.START_LEVEL.toString(), 'config');
+        });
     }
 
     private restartGame() {

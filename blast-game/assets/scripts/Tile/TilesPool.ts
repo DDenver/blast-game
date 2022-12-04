@@ -24,9 +24,13 @@ export default class TilesPool<T extends Tile> {
         this.defaulSize = defaulSize;
         this.defaultPos = defaultPos;
 
+        const initElemnts = [];
+
         for (let i = 0; i < this.defaulSize; i++) {
-            this.getTile();
+            initElemnts.push(this.getTile());
         }
+        
+        initElemnts.forEach(el => this.addTile(el))
     }
 
     public getTile(): T {
