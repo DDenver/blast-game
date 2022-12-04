@@ -4,7 +4,6 @@ import FiledStateWaiting from './FiledStateWaiting';
 
 export default class FieldStateSwap extends FieldState {
     async tapToTile(tile: Tile): Promise<void> {
-        console.log('FieldStateSwap');
         await tile.focus();
         await this.field.fieldCreator.swapTiles(tile, this.field.focusTile)
 

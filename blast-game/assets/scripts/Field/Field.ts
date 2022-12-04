@@ -13,6 +13,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass()
 export default class Field extends cc.Component {
     @property(TilesCreator) tilesCreator: TilesCreator = null;
+    @property(cc.Node) renderer: cc.Node = null;
 
     public fieldInput: FieldInput;
     public fieldCreator: FieldCreator;

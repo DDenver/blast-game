@@ -30,7 +30,7 @@ export default class TilesCreator extends cc.Component {
     }
 
     public init(): void {
-        const parent = this.field.node // todo change to Field node
+        const parent = this.field.renderer // todo change to Field node
 
         this.tileColorPool = new TilesPool(parent, this.tileColorPrefab, TileColorDestroy.name);
         this.tileLinePool = new TilesPool(parent, this.tileLinePrefab, TileLineDestroy.name);
