@@ -2,7 +2,10 @@ import Utilities from '../Plugins/Utilities';
 import Field from './Field';
 
 export default class FieldUtils {
-    public static instance: FieldUtils = null;
+    private static _instance: FieldUtils = null;
+    public static get instance(): FieldUtils {
+        return this._instance;
+    }
 
     private _fieldSize: cc.Size = new cc.Size(7, 7);
     public get fieldSize(): cc.Size {
@@ -27,7 +30,7 @@ export default class FieldUtils {
             return FieldUtils.instance;
         }
 
-        FieldUtils.instance = this;
+        FieldUtils._instance = this;
 
         this.field = field;
         this._fieldSize = fieldSize;

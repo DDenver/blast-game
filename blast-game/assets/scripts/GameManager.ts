@@ -18,9 +18,9 @@ export default class GameManager extends cc.Component {
     start(): void {
         this.windowResized();
 
-        this.scheduleOnce(() => {
-            this.newGame();
-        }, 0.5);
+        // this.scheduleOnce(() => {
+        //     this.newGame();
+        // }, 0.5);
     }
 
 

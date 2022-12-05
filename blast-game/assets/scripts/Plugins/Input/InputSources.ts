@@ -7,7 +7,7 @@ enum InputSources {
 	BoosterButton,
 
 	NewGameButton,
-	AchievementsButton
+	AchievementsButton,
 }
 
 export default InputSources;
