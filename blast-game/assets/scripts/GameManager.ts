@@ -1,6 +1,9 @@
 import Events from './Enums/Events';
 import SceneNames from './Enums/SceneNames';
+import { LevelConfig } from './Level/LevelConfig';
+import InputManager from './Plugins/Input/InputManager';
 import Settings from "./Plugins/Settings";
+import Utilities from './Plugins/Utilities';
 import { IResultData } from './UI/ResultMenu/IResultData';
 
 const { ccclass, property } = cc._decorator;
@@ -8,9 +11,14 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GameManager extends cc.Component {
 
+    @property(LevelConfig) levelsConfig: LevelConfig[] = [];
+
     private settings: Settings = new Settings();
+    private currentLevel: number = 1;
 
     onLoad(): void {
+        InputManager.getInstance();
+
         this.subscribeEvents();
 
         cc.game.addPersistRootNode(this.node);
@@ -18,10 +26,6 @@ export default class GameManager extends cc.Component {
 
     start(): void {
         this.windowResized();
-
-        // this.scheduleOnce(() => {
-        //     this.newGame();
-        // }, 0.5);
     }
 
 
@@ -55,13 +59,19 @@ export default class GameManager extends cc.Component {
 
 
     private newGame() {
+        this.currentLevel = 1;
+
         this.loadScene(SceneNames.GAME, () => {
-            cc.systemEvent.emit(Events.START_LEVEL.toString(), 'config');
+            cc.systemEvent.emit(Events.START_LEVEL.toString(), this.levelsConfig[this.currentLevel - 1], this.currentLevel);
         });
     }
 
     private restartGame() {
-        this.loadScene(SceneNames.GAME);
+        this.currentLevel = 1;
+
+        this.loadScene(SceneNames.GAME, () => {
+            cc.systemEvent.emit(Events.START_LEVEL.toString(), this.levelsConfig[this.currentLevel - 1], this.currentLevel);
+        });
     }
 
     private completeLevel(data: IResultData) {
@@ -81,7 +91,15 @@ export default class GameManager extends cc.Component {
     }
 
     private nextLevel() {
-        this.loadScene(SceneNames.GAME);
+        const nextLevelConfig = (this.currentLevel >= this.levelsConfig.length) ?
+            Utilities.getRandomElementFromArray(this.levelsConfig)
+            : this.levelsConfig[this.currentLevel];
+        this.currentLevel++;
+
+
+        this.loadScene(SceneNames.GAME, () => {
+            cc.systemEvent.emit(Events.START_LEVEL.toString(), nextLevelConfig, this.currentLevel);
+        });
     }
 
     private mainMenu() {

@@ -12,16 +12,18 @@ export default class FieldInput {
 
     constructor(field: Field) {
         this.field = field;
-
+        
         this.init();
     }
 
     public enable(): void {
         this.isEnable = true;
+        InputManager.getInstance().on(InputTypes.Down, this.onInput, this);
     }
 
     public disable(): void {
         this.isEnable = false;
+        InputManager.getInstance().off(InputTypes.Down, this.onInput, this);
     }
 
     public init(): void {

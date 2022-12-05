@@ -19,7 +19,6 @@ export default class LevelManager extends cc.Component {
     @property(BoosterManager) boosterManager: IBoosterManager = null;
     @property(Field) field: Field = null;
     @property(TilesCreator) tilesCreator: TilesCreator = null;
-    @property(cc.Size) fieldSize: cc.Size = cc.Size.ZERO;
 
     @property(LevelConfig) config: LevelConfig = null;
 
@@ -42,6 +41,7 @@ export default class LevelManager extends cc.Component {
     }
 
     public leave(): void {
+        this.pause();
         cc.systemEvent.emit(Events.LEAVE_LEVEL.toString(), {
             steps: this.stepsCounter.getCurrentValue(),
             score: this.scoreCounter.getCurrentValue(),
@@ -49,18 +49,22 @@ export default class LevelManager extends cc.Component {
         });
     }
 
-    private onStartLevel(config: LevelConfig): void {
-        this.boosterManager.init(this.config.boosters);
+    private onStartLevel(config: LevelConfig, levelNumber: number): void {
+        this.levelNumber = levelNumber;
+
+        this.boosterManager.init(config.boosters);
         this.boosterManager.enable();
 
-        this.tilesCreator.init(this.field.renderer, this.config.tiles);
-        this.field.init(this.fieldSize);
+        this.tilesCreator.init(this.field.renderer, config.tiles);
+        this.field.init(config.fieldSize);
 
         this.stepsCounter.init({
-            startValue: this.config.steps,
+            startValue: config.steps,
             incrementValue: -1,
             threshold: 0,
             callback: async () => {
+                this.pause();
+
                 await this.field.waitTimer(1);
                 cc.systemEvent.emit(Events.FAIL_LEVEL.toString(),
                     {
@@ -73,12 +77,14 @@ export default class LevelManager extends cc.Component {
 
         this.scoreCounter.init({
             startValue: 0,
-            incrementValue: this.config.scoreStep,
+            incrementValue: config.scoreStep,
         });
 
         this.progressBar.init({
-            goal: this.config.score,
+            goal: config.score,
             callback: async () => {
+                this.pause();
+
                 await this.field.waitTimer(1);
                 cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString(), {
                     steps: this.stepsCounter.getCurrentValue(),

@@ -35,6 +35,7 @@ export default class Field extends cc.Component {
         new FieldUtils().init(this, fieldSize);
         this.fieldCreator = new FieldCreator(this);
         this.fieldInput = new FieldInput(this);
+        this.fieldInput.init();
 
         this.setState(new FieldStateCreation(this));
     }
