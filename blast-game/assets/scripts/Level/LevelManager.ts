@@ -3,6 +3,7 @@ import IBoosterManager from '../Booster/Interface/IBoosterManager';
 import Events from '../Enums/Events';
 import Field from '../Field/Field';
 import TilesCreator from '../Tile/TilesCreator';
+import Counter from '../UI/Counter/Counter';
 import PauseMenu from '../UI/PauseMenu/PauseMenu';
 import { LevelConfig } from './LevelConfig';
 
@@ -11,6 +12,8 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class LevelManager extends cc.Component {
     @property(PauseMenu) pauseMenu: PauseMenu = null;
+    @property(Counter) scoreCounter: Counter = null;
+    @property(Counter) stepsCounter: Counter = null;
     @property(BoosterManager) boosterManager: IBoosterManager = null;
     @property(Field) field: Field = null;
     @property(TilesCreator) tilesCreator: TilesCreator = null;
