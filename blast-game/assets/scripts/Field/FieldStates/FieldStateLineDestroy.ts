@@ -1,4 +1,5 @@
 import { BoosterTypes } from '../../Booster/BoosterTypes';
+import Events from '../../Enums/Events';
 import Tile from '../../Tile/Tile';
 import { LineDestroy } from '../../Tile/TileConstants';
 import FieldUtils from '../FieldUtils';
@@ -29,6 +30,7 @@ export default class FieldStateLineDestroy extends FieldState {
         if (this.field.boosterManager.activeBoosterPayload) this.field.boosterManager.useActiveBooster();
 
         await this.field.waitTimer(0.25);// wait remove tiles
+        cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         this.field.setState(new FieldStateFallTiles(this.field));
     }
 
@@ -39,13 +41,13 @@ export default class FieldStateLineDestroy extends FieldState {
 
         for (let i = 0; i < iteration; i++) {
             if (i === 0) {
-                this.field.fieldCreator.removeTile(line[pos]);
+                this.field.fieldCreator.removeTiles([line[pos]]);
             } else {
                 const firstSide = line[pos + i];
                 const secondSide = line[pos - i];
 
-                if (firstSide) this.field.fieldCreator.removeTile(firstSide);
-                if (secondSide) this.field.fieldCreator.removeTile(secondSide);
+                if (firstSide) this.field.fieldCreator.removeTiles([firstSide]);
+                if (secondSide) this.field.fieldCreator.removeTiles([secondSide]);
             }
             await this.field.waitTimer(iterationTime * i);// wait remove tiles
         }

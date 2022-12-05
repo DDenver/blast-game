@@ -1,3 +1,4 @@
+import Events from '../../Enums/Events';
 import Tile from '../../Tile/Tile';
 import TileColorDestroy from '../../Tile/TileColorDestroy';
 import { AreaDestroy, TileAbilityTypes } from '../../Tile/TileConstants';
@@ -20,7 +21,7 @@ export default class FieldStateDestroyByColor extends FieldState {
             await this.removeTiles(siblings);
         }
 
-
+        cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         this.field.setState(new FieldStateFallTiles(this.field));
     }
 

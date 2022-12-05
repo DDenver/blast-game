@@ -26,7 +26,6 @@ export default class ProgressBarRenderer extends cc.Component {
         if (this.tween) this.tween.stop();
         const nextPosX = this.startLinePosX + Utilities.clamp(this.lineWidth * progress, 0, this.lineWidth);
         const duration = (nextPosX - this.fillLine.x) / this.speed;
-        console.log(duration, nextPosX, this.startLinePosX, this.lineWidth * progress);
 
         const newPos = this.fillLine.position.clone();
         newPos.x = nextPosX;

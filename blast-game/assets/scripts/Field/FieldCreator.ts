@@ -1,4 +1,5 @@
 import EasingType from '../Enums/EasingType';
+import Events from '../Enums/Events';
 import Tile from '../Tile/Tile';
 import { AreaDestroy, LineDestroy, TileAbilityTypes } from '../Tile/TileConstants';
 import Field from './Field';
@@ -78,13 +79,9 @@ export default class FieldCreator {
         return col;
     }
 
-    public removeTile(tile: Tile): void {
-        const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
-        this.map[pos.y][pos.x] = null;
-        tile.remove();
-    }
-
     public removeTiles(tiles: Tile[]): void {
+        cc.systemEvent.emit(Events.UPDATE_SCORE.toString(), tiles.length);
+        
         tiles.forEach(tile => {
             this.removeTile(tile);
         });
@@ -167,5 +164,11 @@ export default class FieldCreator {
         const worldPos = FieldUtils.instance.getMapToWorldPos(mapPos);
         tile.fallDown(worldPos, time, easing);
         this.map[mapPos.y][mapPos.x] = tile;
+    }
+
+    private removeTile(tile: Tile): void {
+        const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
+        this.map[pos.y][pos.x] = null;
+        tile.remove();
     }
 }

@@ -1,4 +1,5 @@
 import { BoosterTypes } from '../../Booster/BoosterTypes';
+import Events from '../../Enums/Events';
 import Tile from '../../Tile/Tile';
 import TileAreaDestroy from '../../Tile/TileAreaDestroy';
 import { AreaDestroy } from '../../Tile/TileConstants';
@@ -23,6 +24,7 @@ export default class FieldStateAreaDestroy extends FieldState {
         if (this.field.boosterManager.activeBoosterPayload) this.field.boosterManager.useActiveBooster();
 
         await this.field.waitTimer(0.25);// wait remove tiles
+        cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         this.field.setState(new FieldStateFallTiles(this.field));
     }
 

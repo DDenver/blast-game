@@ -15,7 +15,7 @@ export default class LevelManager extends cc.Component {
     @property(PauseMenu) pauseMenu: PauseMenu = null;
     @property(Counter) scoreCounter: Counter = null;
     @property(Counter) stepsCounter: Counter = null;
-    @property(ProgressBar) ProgressBar: ProgressBar = null;
+    @property(ProgressBar) progressBar: ProgressBar = null;
     @property(BoosterManager) boosterManager: IBoosterManager = null;
     @property(Field) field: Field = null;
     @property(TilesCreator) tilesCreator: TilesCreator = null;
@@ -27,6 +27,8 @@ export default class LevelManager extends cc.Component {
 
     onLoad() {
         cc.systemEvent.on(Events.START_LEVEL.toString(), this.onStartLevel, this);
+        cc.systemEvent.on(Events.UPDATE_SCORE.toString(), this.onUpdateScore, this);
+        cc.systemEvent.on(Events.STEP_COMPLETED.toString(), this.onStepCompleted, this);
     }
 
     public pause(): void {
@@ -48,6 +50,37 @@ export default class LevelManager extends cc.Component {
         this.tilesCreator.init(this.field.renderer, this.config.tiles);
         this.field.init(this.fieldSize);
 
+        this.stepsCounter.init({
+            startValue: this.config.steps,
+            incrementValue: -1,
+            threshold: 0,
+            callback: () => {
+                this.field.waitTimer(0.8);
+                cc.systemEvent.emit(Events.FAIL_LEVEL.toString());
+            }
+        });
+
+        this.scoreCounter.init({
+            startValue: 0,
+            incrementValue: this.config.scoreStep,
+        });
+
+        this.progressBar.init({
+            goal: this.config.score,
+            callback: () => {
+                this.field.waitTimer(0.8);
+                cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString());
+            }
+        });
+
         this.pauseMenu.init(this);
+    }
+
+    private onUpdateScore(multiplier: number = 1): void {
+        this.scoreCounter.updateValue(multiplier);
+        this.progressBar.updateProgress(this.scoreCounter.getCurrentValue());
+    }
+    private onStepCompleted(): void {
+        this.stepsCounter.updateValue();
     }
 }

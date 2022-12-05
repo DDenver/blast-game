@@ -14,6 +14,10 @@ export default class Counter extends cc.Component {
     private threshold: number = 0;
     private callback: () => void = null;
 
+    onLoad() {
+        this.renderer = this.node.getComponent(CounterRenderer);
+    }
+
     public init(data: ICounterInitData): void {
         this.startValue = data.startValue;
         this.currentValue = data.startValue;

@@ -29,7 +29,7 @@ export default class ProgressBar extends cc.Component {
     public updateProgress(v: number): void {
         if (this.isGoalComplete) return;
         
-        this.currentProgress = Utilities.clamp(this.currentProgress + v, 0, this.goal);
+        this.currentProgress = Utilities.clamp(v, 0, this.goal);
         this.renderer.setProgress(this.currentProgress / this.goal);
 
         if (this.currentProgress === this.goal) {

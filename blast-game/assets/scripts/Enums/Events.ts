@@ -14,6 +14,8 @@ enum Events {
     START_LEVEL,
     SHOW_RESULT,
 
+    UPDATE_SCORE,
+    STEP_COMPLETED,
     TILE_REMOVED,
 }
 

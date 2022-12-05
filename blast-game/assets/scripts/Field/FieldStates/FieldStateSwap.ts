@@ -1,3 +1,4 @@
+import Events from '../../Enums/Events';
 import Tile from '../../Tile/Tile';
 import FieldState from './FieldState';
 import FiledStateWaiting from './FiledStateWaiting';
@@ -10,6 +11,7 @@ export default class FieldStateSwap extends FieldState {
         this.field.focusTile = null;
 
         this.field.boosterManager.useActiveBooster();
+        cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         this.field.setState(new FiledStateWaiting(this.field));
     }
 

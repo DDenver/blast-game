@@ -151,7 +151,7 @@
     "stepsCounter": {
       "__id__": 14
     },
-    "ProgressBar": {
+    "progressBar": {
       "__id__": 107
     },
     "boosterManager": {
@@ -8850,6 +8850,9 @@
   },
   {
     "__type__": "LevelConfig",
+    "steps": 15,
+    "score": 800,
+    "scoreStep": 25,
     "boosters": [
       {
         "__id__": 537
