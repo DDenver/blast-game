@@ -1,3 +1,5 @@
+import { IScoreStorageData } from '../../ScoreStorage';
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -16,10 +18,10 @@ export default class MainMenuRenderer extends cc.Component {
         await this.playAnimation(this.modalMenu, 255);
     }
 
-    public async showAchievements(level: number, steps: number, score: number): Promise<void> {
-        this.labelLevel.string = '' + level;
-        this.labelSteps.string = '' + steps;
-        this.labelScore.string = '' + score;
+    public async showAchievements(data: IScoreStorageData): Promise<void> {
+        this.labelLevel.string = '' + data.level;
+        this.labelSteps.string = '' + data.steps;
+        this.labelScore.string = '' + data.score;
 
         await this.playAnimation(this.modalMenu, 0);
         await this.playAnimation(this.modalAchievements, 255);

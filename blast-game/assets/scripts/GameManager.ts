@@ -4,6 +4,7 @@ import { LevelConfig } from './Level/LevelConfig';
 import InputManager from './Plugins/Input/InputManager';
 import Settings from "./Plugins/Settings";
 import Utilities from './Plugins/Utilities';
+import ScoreStorage from './ScoreStorage';
 import { IResultData } from './UI/ResultMenu/IResultData';
 
 const { ccclass, property } = cc._decorator;
@@ -17,6 +18,7 @@ export default class GameManager extends cc.Component {
     private currentLevel: number = 1;
 
     onLoad(): void {
+        new ScoreStorage();
         InputManager.getInstance();
 
         this.subscribeEvents();
@@ -75,16 +77,22 @@ export default class GameManager extends cc.Component {
     }
 
     private completeLevel(data: IResultData) {
+        this.saveResultData(data);
+
         this.loadScene(SceneNames.RESULT, () => {
             cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
     }
     private failLevel(data: IResultData) {
+        this.saveResultData(data);
+
         this.loadScene(SceneNames.RESULT, () => {
             cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
     }
     private leaveLevel(data: IResultData) {
+        this.saveResultData(data);
+
         this.loadScene(SceneNames.RESULT, () => {
             cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
@@ -104,5 +112,18 @@ export default class GameManager extends cc.Component {
 
     private mainMenu() {
         this.loadScene(SceneNames.MAIN);
+    }
+
+    private saveResultData(data: IResultData): void {
+        const currentData = ScoreStorage.instance.get();
+
+        if (currentData.score <= data.score) {
+            const newData = {
+                score: data.score,
+                steps: data.steps,
+                level: this.currentLevel
+            }
+            ScoreStorage.instance.save(newData);
+        }
     }
 }

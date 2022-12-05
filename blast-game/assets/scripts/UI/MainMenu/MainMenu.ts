@@ -3,6 +3,7 @@ import InputManager from '../../Plugins/Input/InputManager';
 import { InputManagerData } from '../../Plugins/Input/InputManagerData';
 import InputSources from '../../Plugins/Input/InputSources';
 import InputTypes from '../../Plugins/Input/InputTypes';
+import ScoreStorage from '../../ScoreStorage';
 import MainMenuRenderer from './MainMenuRenderer';
 
 const { ccclass, property } = cc._decorator;
@@ -38,7 +39,7 @@ export default class MainMenu extends cc.Component {
     }
 
     private async showAchievements(): Promise<void> {
-        this.renderer.showAchievements(0, 0, 0);
+        this.renderer.showAchievements(ScoreStorage.instance.get());
     }
 
 }
