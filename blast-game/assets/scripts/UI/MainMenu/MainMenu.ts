@@ -1,19 +1,44 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+import Events from '../../Enums/Events';
+import InputManager from '../../Plugins/Input/InputManager';
+import { InputManagerData } from '../../Plugins/Input/InputManagerData';
+import InputSources from '../../Plugins/Input/InputSources';
+import InputTypes from '../../Plugins/Input/InputTypes';
+import MainMenuRenderer from './MainMenuRenderer';
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MainMenu extends cc.Component {
-    // onLoad () {}
+    private renderer: MainMenuRenderer = null;
+    private isInputActive: boolean = true;
 
-    start () {
+    onLoad() {
+        this.renderer = this.node.getComponent(MainMenuRenderer);
 
+        InputManager.getInstance().on(InputTypes.Up, this.onUp, this);
     }
 
-    // update (dt) {}
+    private async onUp(data: InputManagerData): Promise<void> {
+        if (!this.isInputActive) return;
+        this.isInputActive = false;
+
+        switch (data.touchSource) {
+            case InputSources.AchievementsButton:
+                await this.showAchievements();
+                break;
+            case InputSources.NewGameButton:
+                cc.systemEvent.emit(Events.NEW_GAME.toString());
+                break;
+            case InputSources.MenuOkButton:
+                await this.renderer.showMenu();
+                break;
+        }
+
+        this.isInputActive = true;
+    }
+
+    private async showAchievements(): Promise<void> {
+        this.renderer.showAchievements(0, 0, 0);
+    }
+
 }

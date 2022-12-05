@@ -1,28 +1,39 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class MainMenuRenderer extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(cc.Node) modalMenu: cc.Node = null;
+    @property(cc.Node) modalAchievements: cc.Node = null;
+    @property(cc.Label) labelLevel: cc.Label = null;
+    @property(cc.Label) labelSteps: cc.Label = null;
+    @property(cc.Label) labelScore: cc.Label = null;
 
-    @property
-    text: string = 'hello';
+    private tween: cc.Tween<cc.Node> = null;
+    private duration: number = 0.1;
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {}
-
-    start () {
-
+    public async showMenu(): Promise<void> {
+        await this.playAnimation(this.modalAchievements, 0);
+        await this.playAnimation(this.modalMenu, 255);
     }
 
-    // update (dt) {}
+    public async showAchievements(level: number, steps: number, score: number): Promise<void> {
+        this.labelLevel.string = '' + level;
+        this.labelSteps.string = '' + steps;
+        this.labelScore.string = '' + score;
+
+        await this.playAnimation(this.modalMenu, 0);
+        await this.playAnimation(this.modalAchievements, 255);
+    }
+
+    private async playAnimation(target: cc.Node, opacity: number): Promise<void> {
+        return new Promise(res => {
+            cc.tween<cc.Node>(target).to(this.duration,
+                { opacity },
+            )
+                .call(() => res())
+                .start();
+        })
+    }
+
 }

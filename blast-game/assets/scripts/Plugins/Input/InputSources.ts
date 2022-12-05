@@ -8,6 +8,7 @@ enum InputSources {
 
 	NewGameButton,
 	AchievementsButton,
+	MenuOkButton,
 }
 
 export default InputSources;
