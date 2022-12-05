@@ -2,13 +2,14 @@ import EasingType from '../Enums/EasingType';
 import InputCather from '../Plugins/Input/InputCatcher';
 import InputManager from '../Plugins/Input/InputManager';
 import { InputManagerData } from '../Plugins/Input/InputManagerData';
-import InputSources from '../Plugins/Input/InputSources';
 import InputTypes from '../Plugins/Input/InputTypes';
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Button extends cc.Component {
+    @property(cc.Node) holder: cc.Node = null;
+
     private inputCatcher: InputCather = null;
     private tween: cc.Tween<cc.Node> = null;
     private duration: number = 0.15;
@@ -24,7 +25,7 @@ export default class Button extends cc.Component {
 
         if (this.tween) this.tween.stop();
 
-        this.tween = cc.tween<cc.Node>(this.node).to(this.duration,
+        this.tween = cc.tween<cc.Node>(this.holder || this.node).to(this.duration,
             { scale: 0.9 },
             { easing: cc.easing[EasingType.quadIn] }
         ).start();
@@ -35,7 +36,7 @@ export default class Button extends cc.Component {
 
         if (this.tween) this.tween.stop();
 
-        this.tween = cc.tween<cc.Node>(this.node).to(this.duration,
+        this.tween = cc.tween<cc.Node>(this.holder || this.node).to(this.duration,
             { scale: 1 },
             { easing: cc.easing[EasingType.quadOut] }
         ).start();

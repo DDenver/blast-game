@@ -106,4 +106,8 @@ export default class TransformComponent extends cc.Component {
         const transform = this.getCurrentTransform();
         transform.setNodeTransform(this.node);
     }
+
+    protected onEnable(): void {
+        this.onSizeChanged();
+    }
 }

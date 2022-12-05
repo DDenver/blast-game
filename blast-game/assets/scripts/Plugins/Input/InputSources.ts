@@ -9,6 +9,10 @@ enum InputSources {
 	NewGameButton,
 	AchievementsButton,
 	MenuOkButton,
+
+	PauseButton,
+	ResumeButton,
+	ExitButton,
 }
 
 export default InputSources;

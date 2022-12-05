@@ -9,7 +9,6 @@ export default class MainMenuRenderer extends cc.Component {
     @property(cc.Label) labelSteps: cc.Label = null;
     @property(cc.Label) labelScore: cc.Label = null;
 
-    private tween: cc.Tween<cc.Node> = null;
     private duration: number = 0.1;
 
     public async showMenu(): Promise<void> {
