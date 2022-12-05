@@ -13,8 +13,6 @@ export default class ResultMenuRenderer extends cc.Component {
     @property(cc.Label) scoreFailLabel: cc.Label = null;
     @property(cc.Label) titleFailLabel: cc.Label = null;
 
-    private duration: number = 0.1;
-
     onLoad() {
         this.levelWin.opacity = 0;
         this.levelWin.active = false;
@@ -23,7 +21,7 @@ export default class ResultMenuRenderer extends cc.Component {
     }
 
     public showWinModal(steps: number, score: number, level: number): void {
-        this.levelNumberLabel.string = `уровень ${level} пройден`;
+        this.levelNumberLabel.string =`уровень ${level}`;
         this.stepsLabel.string = '' + steps;
         this.scoreWinLabel.string = '' + score;
 

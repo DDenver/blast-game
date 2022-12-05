@@ -40,7 +40,11 @@ export default class LevelManager extends cc.Component {
     }
 
     public leave(): void {
-        cc.systemEvent.emit(Events.LEAVE_LEVEL.toString());
+        cc.systemEvent.emit(Events.LEAVE_LEVEL.toString(), {
+            steps: this.stepsCounter.getCurrentValue(),
+            score: this.scoreCounter.getCurrentValue(),
+            isFail: false,
+        });
     }
 
     private onStartLevel(config: LevelConfig): void {
@@ -54,9 +58,14 @@ export default class LevelManager extends cc.Component {
             startValue: this.config.steps,
             incrementValue: -1,
             threshold: 0,
-            callback: () => {
-                this.field.waitTimer(0.8);
-                cc.systemEvent.emit(Events.FAIL_LEVEL.toString());
+            callback: async () => {
+                await this.field.waitTimer(1);
+                cc.systemEvent.emit(Events.FAIL_LEVEL.toString(),
+                    {
+                        steps: this.stepsCounter.getCurrentValue(),
+                        score: this.scoreCounter.getCurrentValue(),
+                        isFail: true,
+                    });
             }
         });
 
@@ -67,9 +76,14 @@ export default class LevelManager extends cc.Component {
 
         this.progressBar.init({
             goal: this.config.score,
-            callback: () => {
-                this.field.waitTimer(0.8);
-                cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString());
+            callback: async () => {
+                await this.field.waitTimer(1);
+                cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString(), {
+                    steps: this.stepsCounter.getCurrentValue(),
+                    score: this.scoreCounter.getCurrentValue(),
+                    isNextLevel: true,
+                    level: this.levelNumber,
+                });
             }
         });
 

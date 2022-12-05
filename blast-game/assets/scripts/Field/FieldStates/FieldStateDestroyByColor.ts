@@ -17,11 +17,12 @@ export default class FieldStateDestroyByColor extends FieldState {
             this.field.focusTile = null;
         } else if (siblings.length >= this.field.matchingCountForUpgrade) {
             await this.upgradeTile(siblings);
+            cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         } else {
             await this.removeTiles(siblings);
+            cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         }
 
-        cc.systemEvent.emit(Events.STEP_COMPLETED.toString());
         this.field.setState(new FieldStateFallTiles(this.field));
     }
 

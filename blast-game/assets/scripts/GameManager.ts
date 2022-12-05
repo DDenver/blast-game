@@ -1,6 +1,7 @@
 import Events from './Enums/Events';
 import SceneNames from './Enums/SceneNames';
 import Settings from "./Plugins/Settings";
+import { IResultData } from './UI/ResultMenu/IResultData';
 
 const { ccclass, property } = cc._decorator;
 
@@ -63,19 +64,19 @@ export default class GameManager extends cc.Component {
         this.loadScene(SceneNames.GAME);
     }
 
-    private completeLevel() {
+    private completeLevel(data: IResultData) {
         this.loadScene(SceneNames.RESULT, () => {
-            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
     }
-    private failLevel() {
+    private failLevel(data: IResultData) {
         this.loadScene(SceneNames.RESULT, () => {
-            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
     }
-    private leaveLevel() {
+    private leaveLevel(data: IResultData) {
         this.loadScene(SceneNames.RESULT, () => {
-            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), data);
         });
     }
 
