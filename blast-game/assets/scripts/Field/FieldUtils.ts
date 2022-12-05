@@ -25,13 +25,15 @@ export default class FieldUtils {
     private fieldWorldSize: cc.Size = cc.Size.ZERO;
     private startPoint: cc.Vec2 = cc.Vec2.ONE;
 
-    constructor(field: Field, fieldSize: cc.Size) {
+    constructor() {
         if (FieldUtils.instance !== null) {
             return FieldUtils.instance;
         }
 
         FieldUtils._instance = this;
+    }
 
+    public init(field: Field, fieldSize: cc.Size): void {
         this.field = field;
         this._fieldSize = fieldSize;
 

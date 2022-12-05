@@ -32,7 +32,7 @@ export default class Field extends cc.Component {
     private state: FieldState;
 
     public init(fieldSize: cc.Size): void {
-        new FieldUtils(this, fieldSize);
+        new FieldUtils().init(this, fieldSize);
         this.fieldCreator = new FieldCreator(this);
         this.fieldInput = new FieldInput(this);
 
