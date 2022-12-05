@@ -36,7 +36,7 @@ export default class PauseMenu extends cc.Component {
                 break;
             case InputSources.ResumeButton:
                 await this.renderer.hideModal();
-                this.levelManager.pause();
+                this.levelManager.resume();
                 break;
             case InputSources.ExitButton:
                 this.renderer.hideModal();

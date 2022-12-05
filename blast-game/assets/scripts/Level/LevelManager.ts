@@ -32,11 +32,13 @@ export default class LevelManager extends cc.Component {
     }
 
     public pause(): void {
-
+        this.field.disable();
+        this.boosterManager.disable();
     }
-
+    
     public resume(): void {
-
+        this.field.enable();
+        this.boosterManager.enable();
     }
 
     public leave(): void {

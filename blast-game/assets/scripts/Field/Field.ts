@@ -31,16 +31,20 @@ export default class Field extends cc.Component {
 
     private state: FieldState;
 
-    // onLoad() {
-    //     this.init();
-    // }
-
     public init(fieldSize: cc.Size): void {
         new FieldUtils(this, fieldSize);
         this.fieldCreator = new FieldCreator(this);
         this.fieldInput = new FieldInput(this);
 
         this.setState(new FieldStateCreation(this));
+    }
+
+    public enable(): void {
+        this.fieldInput.enable();
+    }
+
+    public disable(): void {
+        this.fieldInput.disable();
     }
 
     public setState(state: FieldState): void {
@@ -120,6 +124,4 @@ export default class Field extends cc.Component {
             && firstTile.config.typeDestroy === secondTile.config.typeDestroy
         );
     }
-
-    // update (dt) {}
 }
