@@ -25,7 +25,7 @@ export default class LevelManager extends cc.Component {
     }
 
     public pause(): void {
-        
+
     }
 
     public resume(): void {
@@ -33,7 +33,7 @@ export default class LevelManager extends cc.Component {
     }
 
     public leave(): void {
-
+        cc.systemEvent.emit(Events.LEAVE_LEVEL.toString());
     }
 
     private onStartLevel(config: LevelConfig): void {

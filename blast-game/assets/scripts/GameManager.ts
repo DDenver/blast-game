@@ -32,6 +32,8 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.on(Events.NEW_GAME.toString(), this.newGame, this);
         cc.systemEvent.on(Events.RESTART_GAME.toString(), this.restartGame, this);
         cc.systemEvent.on(Events.COMPLETE_LEVEL.toString(), this.completeLevel, this);
+        cc.systemEvent.on(Events.FAIL_LEVEL.toString(), this.failLevel, this);
+        cc.systemEvent.on(Events.LEAVE_LEVEL.toString(), this.leaveLevel, this);
         cc.systemEvent.on(Events.NEXT_LEVEL.toString(), this.nextLevel, this);
         cc.systemEvent.on(Events.MAIN_MENU.toString(), this.mainMenu, this);
     }
@@ -62,7 +64,19 @@ export default class GameManager extends cc.Component {
     }
 
     private completeLevel() {
-        this.loadScene(SceneNames.RESULT);
+        this.loadScene(SceneNames.RESULT, () => {
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+        });
+    }
+    private failLevel() {
+        this.loadScene(SceneNames.RESULT, () => {
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+        });
+    }
+    private leaveLevel() {
+        this.loadScene(SceneNames.RESULT, () => {
+            cc.systemEvent.emit(Events.SHOW_RESULT.toString(), 'data');
+        });
     }
 
     private nextLevel() {

@@ -13,6 +13,10 @@ enum InputSources {
 	PauseButton,
 	ResumeButton,
 	ExitButton,
+
+	ResultNextLeveleButton,
+	ResultHomeButton,
+	ResultOkButton,
 }
 
 export default InputSources;
