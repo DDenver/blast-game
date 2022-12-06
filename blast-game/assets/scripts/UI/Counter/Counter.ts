@@ -14,6 +14,11 @@ export default class Counter extends cc.Component {
     private threshold: number = 0;
     private callback: () => void = null;
 
+    private _thresholdReached: boolean = false;
+    public get thresholdReached(): boolean {
+        return this._thresholdReached;
+    }
+
     onLoad() {
         this.renderer = this.node.getComponent(CounterRenderer);
     }
@@ -27,6 +32,7 @@ export default class Counter extends cc.Component {
         this.callback = data?.callback;
 
         this.renderer.setValue(this.currentValue);
+        this._thresholdReached = false;
     }
 
     public updateValue(multiplier: number = 1): void {
@@ -35,8 +41,12 @@ export default class Counter extends cc.Component {
         if (this.callback) {
             const delta = this.threshold - this.startValue;
 
-            if (delta > 0 && this.currentValue >= this.threshold) this.callback();
-            if (delta < 0 && this.currentValue <= this.threshold) this.callback();
+            if ((delta > 0 && this.currentValue >= this.threshold)
+                || (delta < 0 && this.currentValue <= this.threshold)
+            ) {
+                this._thresholdReached = true;
+                this.callback();
+            };
         }
 
         this.renderer.setValue(this.currentValue);

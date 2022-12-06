@@ -34,7 +34,7 @@ export default class LevelManager extends cc.Component {
         this.field.disable();
         this.boosterManager.disable();
     }
-    
+
     public resume(): void {
         this.field.enable();
         this.boosterManager.enable();
@@ -64,14 +64,6 @@ export default class LevelManager extends cc.Component {
             threshold: 0,
             callback: async () => {
                 this.pause();
-
-                await this.field.waitTimer(1);
-                cc.systemEvent.emit(Events.FAIL_LEVEL.toString(),
-                    {
-                        steps: this.stepsCounter.getCurrentValue(),
-                        score: this.scoreCounter.getCurrentValue(),
-                        isFail: true,
-                    });
             }
         });
 
@@ -84,14 +76,6 @@ export default class LevelManager extends cc.Component {
             goal: config.score,
             callback: async () => {
                 this.pause();
-
-                await this.field.waitTimer(1);
-                cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString(), {
-                    steps: this.stepsCounter.getCurrentValue(),
-                    score: this.scoreCounter.getCurrentValue(),
-                    isNextLevel: true,
-                    level: this.levelNumber,
-                });
             }
         });
 
@@ -102,7 +86,29 @@ export default class LevelManager extends cc.Component {
         this.scoreCounter.updateValue(multiplier);
         this.progressBar.updateProgress(this.scoreCounter.getCurrentValue());
     }
-    private onStepCompleted(): void {
+    private async onStepCompleted(): Promise<void> {
         this.stepsCounter.updateValue();
+
+        if (this.progressBar.isGoalComplete) {
+            await this.field.waitTimer(1.5);
+
+            cc.systemEvent.emit(Events.COMPLETE_LEVEL.toString(), {
+                steps: this.stepsCounter.getCurrentValue(),
+                score: this.scoreCounter.getCurrentValue(),
+                isNextLevel: true,
+                level: this.levelNumber,
+            });
+        }
+
+        if (this.stepsCounter.thresholdReached) {
+            await this.field.waitTimer(1);
+
+            cc.systemEvent.emit(Events.FAIL_LEVEL.toString(),
+                {
+                    steps: this.stepsCounter.getCurrentValue(),
+                    score: this.scoreCounter.getCurrentValue(),
+                    isFail: true,
+                });
+        }
     }
 }

@@ -11,7 +11,12 @@ export default class ProgressBar extends cc.Component {
     private goal: number = 100;
     private currentProgress: number = 0;
     private callback: () => void = null;
-    private isGoalComplete: boolean = false;
+
+    private _isGoalComplete: boolean = false;
+    public get isGoalComplete(): boolean {
+        return this._isGoalComplete;
+    }
+
 
     onLoad() {
         this.renderer = this.node.getComponent(ProgressBarRenderer);
@@ -21,20 +26,20 @@ export default class ProgressBar extends cc.Component {
         this.goal = data.goal;
         this.callback = data.callback;
         this.currentProgress = 0;
-        this.isGoalComplete = false;
+        this._isGoalComplete = false;
 
         this.updateProgress(0);
     }
 
     public updateProgress(v: number): void {
         if (this.isGoalComplete) return;
-        
+
         this.currentProgress = Utilities.clamp(v, 0, this.goal);
         this.renderer.setProgress(this.currentProgress / this.goal);
 
         if (this.currentProgress === this.goal) {
             this.callback();
-            this.isGoalComplete = true;
+            this._isGoalComplete = true;
         };
     }
 }

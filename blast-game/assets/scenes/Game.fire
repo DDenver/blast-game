@@ -163,11 +163,6 @@
     "tilesCreator": {
       "__id__": 525
     },
-    "fieldSize": {
-      "__type__": "cc.Size",
-      "width": 5,
-      "height": 5
-    },
     "config": {
       "__id__": 536
     },
@@ -623,8 +618,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40.08,
-      "height": 75.6
+      "width": 46.76,
+      "height": 88.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -677,8 +672,8 @@
     "_dstBlendFactor": 771,
     "_string": "0",
     "_N$string": "0",
-    "_fontSize": 60,
-    "_lineHeight": 60,
+    "_fontSize": 70,
+    "_lineHeight": 70,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "763c411f-ab63-4e6c-8987-fddf8a7592b9"
@@ -1329,8 +1324,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40.08,
-      "height": 75.6
+      "width": 46.76,
+      "height": 88.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1383,8 +1378,8 @@
     "_dstBlendFactor": 771,
     "_string": "0",
     "_N$string": "0",
-    "_fontSize": 60,
-    "_lineHeight": 60,
+    "_fontSize": 70,
+    "_lineHeight": 70,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "763c411f-ab63-4e6c-8987-fddf8a7592b9"
@@ -5667,7 +5662,7 @@
     "position": {
       "__type__": "cc.Vec2",
       "x": 0.92,
-      "y": 0.91
+      "y": 0.88
     },
     "offset": {
       "__type__": "cc.Vec2",
@@ -8853,6 +8848,11 @@
     "steps": 15,
     "score": 800,
     "scoreStep": 25,
+    "fieldSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
     "boosters": [
       {
         "__id__": 537
