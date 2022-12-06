@@ -48,7 +48,7 @@ export default class FieldStateDestroyByColor extends FieldState {
     }
 
     private async removeTiles(tiles: Tile[]): Promise<void> {
-        this.field.removeTiles(tiles);
+        this.field.fieldCreator.removeTiles(tiles);
         this.field.focusTile = null;
         await this.field.waitTimer(0.25);// wait remove tiles
     }

@@ -7,7 +7,7 @@ export default class FieldStateFallTiles extends FieldState {
     tapToTile(tile: Tile): void { }
 
     async enterToState(): Promise<void> {
-        await this.field.updateMap();
+        await this.field.fieldCreator.updateMap();
 
         if (this.field.checkToMix()) {
             this.field.setState(new FieldStateMixTiles(this.field));

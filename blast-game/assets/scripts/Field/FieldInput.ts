@@ -12,8 +12,6 @@ export default class FieldInput {
 
     constructor(field: Field) {
         this.field = field;
-        
-        this.init();
     }
 
     public enable(): void {

@@ -55,7 +55,7 @@ export default class LevelManager extends cc.Component {
         this.boosterManager.init(config.boosters);
         this.boosterManager.enable();
 
-        this.tilesCreator.init(this.field.renderer, config.tiles);
+        this.tilesCreator.init(this.field.renderer, config.tiles, config.fieldSize.width * config.fieldSize.height);
         this.field.init(config.fieldSize);
 
         this.stepsCounter.init({

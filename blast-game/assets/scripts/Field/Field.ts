@@ -88,14 +88,6 @@ export default class Field extends cc.Component {
         return siblings;
     }
 
-    public removeTiles(tiles: Tile[]): void {
-        this.fieldCreator.removeTiles(tiles);
-    }
-
-    public async updateMap(): Promise<void> {
-        await this.fieldCreator.updateMap();
-    }
-
     public addUpgradedTile(
         posOnMap: cc.Vec2,
         ability: TileAbilityTypes,

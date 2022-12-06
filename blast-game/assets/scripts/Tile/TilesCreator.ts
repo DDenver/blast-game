@@ -24,12 +24,12 @@ export default class TilesCreator extends cc.Component {
     private tileLinePool: TilesPool<TileLineDestroy>;
     private tileAreaPool: TilesPool<TileAreaDestroy>;
 
-    public init(parentNode: cc.Node, tilesConig: LevelTileConfig[]): void {
+    public init(parentNode: cc.Node, tilesConig: LevelTileConfig[], colorTilesCount: number): void {
         this.tileAreaConig.forEach(tac => {
             tac.radius = tilesConig.find(c => c.typeDestroy === tac.typeDestroy).radius
         });
 
-        this.tileColorPool = new TilesPool(parentNode, this.tileColorPrefab, TileColorDestroy.name);
+        this.tileColorPool = new TilesPool(parentNode, this.tileColorPrefab, TileColorDestroy.name, colorTilesCount);
         this.tileLinePool = new TilesPool(parentNode, this.tileLinePrefab, TileLineDestroy.name);
         this.tileAreaPool = new TilesPool(parentNode, this.tileAreaPrefab, TileAreaDestroy.name);
 

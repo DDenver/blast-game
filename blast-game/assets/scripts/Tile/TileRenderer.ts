@@ -24,14 +24,8 @@ export default class TileRenderer extends cc.Component {
 
     private swapPos: cc.Vec2 = cc.Vec2.ZERO;
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad() {
         this.animation = this.node.getComponent(cc.Animation);
-        // this.scheduleOnce(async () => {
-        //     await this.hide();
-        //     this.show();
-        // }, 2)
     }
 
     public reset(): void {
