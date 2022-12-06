@@ -13,7 +13,44 @@
     ]
   ],
   "excluded-modules": [
-    "3D Physics/Builtin"
+    "Audio",
+    "AudioSource",
+    "Button",
+    "Collider",
+    "Dynamic Atlas",
+    "DragonBones",
+    "EditBox",
+    "Geom Utils",
+    "Layout",
+    "Label Effect",
+    "Mesh",
+    "MotionStreak",
+    "NodePool",
+    "Native Socket",
+    "Physics",
+    "PageView",
+    "PageViewIndicator",
+    "ProgressBar",
+    "ParticleSystem",
+    "RichText",
+    "Renderer Texture",
+    "Slider",
+    "ScrollBar",
+    "ScrollView",
+    "Spine Skeleton",
+    "StudioComponent",
+    "Toggle",
+    "VideoPlayer",
+    "WebView",
+    "3D",
+    "3D Primitive",
+    "SubContext",
+    "TypeScript Polyfill",
+    "3D Physics/cannon.js",
+    "3D Physics/Builtin",
+    "3D Physics Framework",
+    "3D Particle",
+    "SafeArea"
   ],
   "preview-port": 7456,
   "design-resolution-width": 960,
@@ -38,5 +75,6 @@
       "enable": false
     }
   },
-  "start-scene": "3ec6b0d0-95f4-4fd3-8fbc-d36b4dac67d5"
+  "start-scene": "3ec6b0d0-95f4-4fd3-8fbc-d36b4dac67d5",
+  "last-module-event-record-time": 1670306869962
 }

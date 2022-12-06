@@ -29,9 +29,9 @@ export default class TilesCreator extends cc.Component {
             tac.radius = tilesConig.find(c => c.typeDestroy === tac.typeDestroy).radius
         });
 
-        this.tileColorPool = new TilesPool(parentNode, this.tileColorPrefab, TileColorDestroy.name, colorTilesCount);
-        this.tileLinePool = new TilesPool(parentNode, this.tileLinePrefab, TileLineDestroy.name);
-        this.tileAreaPool = new TilesPool(parentNode, this.tileAreaPrefab, TileAreaDestroy.name);
+        this.tileColorPool = new TilesPool(parentNode, this.tileColorPrefab, 'TileColorDestroy', colorTilesCount);
+        this.tileLinePool = new TilesPool(parentNode, this.tileLinePrefab, 'TileLineDestroy');
+        this.tileAreaPool = new TilesPool(parentNode, this.tileAreaPrefab, 'TileAreaDestroy');
 
         cc.systemEvent.on(Events.TILE_REMOVED.toString(), this.tileRemove, this);
     }

@@ -7,20 +7,20 @@ export default class TilesPool<T extends Tile> {
     private pool: T[] = [];
 
     private defaultPos: cc.Vec2;
-    private component: string;
+    private componentName: string;
     private parentNode: cc.Node;
     private prefab: cc.Prefab;
 
     constructor(
         parentNode: cc.Node,
         prefab: cc.Prefab,
-        component: string,
+        componentName: string,
         defaulSize: number = 10,
         defaultPos: cc.Vec2 = new cc.Vec2(-5555, -5555),
     ) {
         this.parentNode = parentNode;
         this.prefab = prefab;
-        this.component = component;
+        this.componentName = componentName;
         this.defaulSize = defaulSize;
         this.defaultPos = defaultPos;
 
@@ -43,7 +43,7 @@ export default class TilesPool<T extends Tile> {
             const tileNode = cc.instantiate(this.prefab);
             tileNode.setParent(this.parentNode);
 
-            tile = tileNode.getComponent(this.component);
+            tile = tileNode.getComponent(this.componentName);
             tile.setPosition(this.defaultPos);
         }
 
