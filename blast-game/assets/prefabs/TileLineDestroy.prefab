@@ -162,7 +162,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "4eb18fb2-f65c-4c57-86a4-08dfe84fefeb"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -239,6 +241,15 @@
       },
       {
         "__uuid__": "8e7dc68a-b8b6-4df8-8192-24067bb707de"
+      },
+      {
+        "__uuid__": "e33e47f7-9383-4610-a2b6-625f9d717eaf"
+      },
+      {
+        "__uuid__": "59fcbcdc-ac70-4d1f-b3ca-ad5afbc3f058"
+      },
+      {
+        "__uuid__": "b678b6ce-1f12-4407-91f1-358247c314b5"
       }
     ],
     "playOnLoad": false,

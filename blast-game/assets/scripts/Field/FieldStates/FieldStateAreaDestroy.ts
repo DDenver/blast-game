@@ -46,7 +46,7 @@ export default class FieldStateAreaDestroy extends FieldState {
         }
 
         for (let i = 0; i < neighbors.length; i++) {
-            await this.field.waitTimer(0.005 * i);// wait remove tiles
+            await this.field.waitTimer(0.025);// wait remove tiles
             this.field.fieldCreator.removeTiles(neighbors[i]);
         }
     }

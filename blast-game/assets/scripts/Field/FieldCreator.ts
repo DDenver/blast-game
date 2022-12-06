@@ -167,6 +167,8 @@ export default class FieldCreator {
     }
 
     private removeTile(tile: Tile): void {
+        if (!tile) return;
+        
         const pos = FieldUtils.instance.getPositionOnMap(tile.getPosition());
         this.map[pos.y][pos.x] = null;
         tile.remove();

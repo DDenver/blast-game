@@ -36,7 +36,7 @@ export default class FieldStateLineDestroy extends FieldState {
 
     private async removeLine(line: Tile[], pos: number): Promise<void> {
         let iteration = 0;
-        let iterationTime = 0.01;
+        let iterationTime = 0.025;
         iteration = Math.round(Math.max(pos, line.length - pos)) + 1;
 
         for (let i = 0; i < iteration; i++) {
@@ -49,7 +49,7 @@ export default class FieldStateLineDestroy extends FieldState {
                 if (firstSide) this.field.fieldCreator.removeTiles([firstSide]);
                 if (secondSide) this.field.fieldCreator.removeTiles([secondSide]);
             }
-            await this.field.waitTimer(iterationTime * i);// wait remove tiles
+            await this.field.waitTimer(iterationTime);// wait remove tiles
         }
     }
 
