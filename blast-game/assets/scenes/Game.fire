@@ -8476,7 +8476,7 @@
   },
   {
     "__type__": "TransformController",
-    "changeValueType": 0,
+    "changeValueType": 1,
     "positionComponent": {
       "__id__": 482
     },
@@ -8530,7 +8530,7 @@
     "desiredSize": {
       "__type__": "cc.Vec2",
       "x": 0.6,
-      "y": 0.65
+      "y": 0.7
     },
     "padding": {
       "__type__": "cc.Vec2",
@@ -8608,7 +8608,7 @@
     "layer": 0,
     "desiredSize": {
       "__type__": "cc.Vec2",
-      "x": 0.7,
+      "x": 0.8,
       "y": 0.55
     },
     "padding": {

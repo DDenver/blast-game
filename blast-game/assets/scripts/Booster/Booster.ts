@@ -1,6 +1,7 @@
 import { BoosterConfig } from './BoosterConfig';
 import BoosterInput from './BoosterInput';
 import BoosterRenderer from './BoosterRenderer';
+import { BoosterTypes } from './BoosterTypes';
 import IBooster from './Interface/IBooster';
 import IBoosterManager from './Interface/IBoosterManager';
 import IBoosterRenderer from './Interface/IBoosterRenderer';
@@ -23,6 +24,7 @@ export default class Booster extends cc.Component implements IBooster {
         this.counter = config.startCount;
         this.config.startCount = config.startCount;
         this.config.type = config.type;
+        if (this.config.type === BoosterTypes.MegaBoomb || this.config.type === BoosterTypes.Boomb) this.config.radius = config.radius;
 
         this.renderer = this.node.getComponent(BoosterRenderer);
         this.renderer.init(config.icon, this.counter);

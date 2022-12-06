@@ -21,7 +21,6 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
     private activeBooster: IBooster = null;
 
     public init(configs: LevelBoosterConfig[]): void {
-
         this.boosters.forEach((booster, i) => {
             const apllyconfig: BoosterConfig = {
                 type: configs[i].type,
@@ -70,10 +69,10 @@ export default class BoosterManager extends cc.Component implements IBoosterMana
 
         switch (booster.config.type) {
             case BoosterTypes.Boomb:
-                payload.radius = 4;
+                payload.radius = booster.config.radius;
                 break;
             case BoosterTypes.MegaBoomb:
-                payload.radius = -1;
+                payload.radius = booster.config.radius;
                 break;
             default:
                 break;

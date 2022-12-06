@@ -201,7 +201,7 @@
     "type": 3,
     "icon": null,
     "startCount": 2,
-    "radius": 4
+    "radius": 2
   },
   {
     "__type__": "LevelTileConfig",
