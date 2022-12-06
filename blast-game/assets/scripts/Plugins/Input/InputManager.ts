@@ -29,6 +29,10 @@ export default class InputManager extends cc.EventTarget {
         return this.instance;
     }
 
+    public resetTouchID(): void {
+        this.currentTouchID = null;
+    }
+
     public on<T extends Function>(key: number | string, callback: T, target?: any, useCapture?: boolean): T {
         return super.on('' + key, callback, target, useCapture);
     }

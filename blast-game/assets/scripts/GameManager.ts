@@ -52,6 +52,8 @@ export default class GameManager extends cc.Component {
 
     private loadScene(name: SceneNames = SceneNames.MAIN, callback?: () => void): void {
         cc.director.loadScene(name, () => {
+            InputManager.getInstance().resetTouchID();
+
             if (callback) callback();
             this.windowResized();
 

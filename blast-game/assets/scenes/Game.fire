@@ -5718,7 +5718,7 @@
   },
   {
     "__type__": "TransformController",
-    "changeValueType": 0,
+    "changeValueType": 1,
     "positionComponent": {
       "__id__": 322
     },
@@ -5841,7 +5841,7 @@
   },
   {
     "__type__": "TransformController",
-    "changeValueType": 0,
+    "changeValueType": 1,
     "positionComponent": {
       "__id__": 336
     },
